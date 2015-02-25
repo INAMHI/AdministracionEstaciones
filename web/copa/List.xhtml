@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="CopaListForm">
+
+        <p:panel header="#{bundle.ListCopaTitle}">
+
+            <p:dataTable id="datalist" value="#{copaController.items}" var="item"
+                         selectionMode="single" selection="#{copaController.selected}"
+                         rowKey="#{item.copaId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.copaId}" filterBy="#{item.copaId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCopaTitle_copaId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.copaId}"/>
+                </p:column>
+                <p:column sortBy="#{item.copadesc}" filterBy="#{item.copadesc}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCopaTitle_copadesc}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.copadesc}"/>
+                </p:column>
+                <p:column sortBy="#{item.copanemo}" filterBy="#{item.copanemo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCopaTitle_copanemo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.copanemo}"/>
+                </p:column>
+                <p:column sortBy="#{item.copauing}" filterBy="#{item.copauing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCopaTitle_copauing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.copauing}"/>
+                </p:column>
+                <p:column sortBy="#{item.copafing}" filterBy="#{item.copafing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCopaTitle_copafing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.copafing}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.copaumod}" filterBy="#{item.copaumod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCopaTitle_copaumod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.copaumod}"/>
+                </p:column>
+                <p:column sortBy="#{item.copafmod}" filterBy="#{item.copafmod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCopaTitle_copafmod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.copafmod}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.umepId.umepId}" filterBy="#{item.umepId.umepsimb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCopaTitle_umepId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.umepId.umepsimb}"/>
+                </p:column>
+                <p:column sortBy="#{item.parmId.parmId}" filterBy="#{item.parmId.parmdesc}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCopaTitle_parmId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.parmId.parmdesc}"/>
+                </p:column>
+                <p:column sortBy="#{item.inutId.inutId}" filterBy="#{item.inutId.inutId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCopaTitle_inutId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.inutId.inteId.intetiemp} #{item.inutId.umetId.umetnomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.estdId.estdId}" filterBy="#{item.estdId.estdId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCopaTitle_estdId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estdId.estddesc}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{copaController.prepareCreate}" update=":CopaCreateForm" oncomplete="CopaCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CopaViewForm" oncomplete="CopaViewDialog.show()" disabled="#{empty copaController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CopaEditForm" oncomplete="CopaEditDialog.show()" disabled="#{empty copaController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{copaController.delete}" update=":growl,datalist" disabled="#{empty copaController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

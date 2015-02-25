@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EsteCreateDlg" widgetVar="EsteCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateEsteTitle}">
+
+            <h:form id="EsteCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{esteController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.CreateEsteLabel_estenomb}" for="estenomb" />
+                        <p:inputText id="estenomb" value="#{esteController.selected.estenomb}" title="#{bundle.CreateEsteTitle_estenomb}" required="true" requiredMessage="#{bundle.CreateEsteRequiredMessage_estenomb}"/>
+
+                        <h:outputLabel value="#{bundle.CreateEsteLabel_esteicon}" for="esteicon" />
+                        <p:inputText id="esteicon" value="#{esteController.selected.esteicon}" title="#{bundle.CreateEsteTitle_esteicon}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{esteController.saveNew}" value="#{bundle.Save}" update="display,:EsteListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,EsteCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EsteCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

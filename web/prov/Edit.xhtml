@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProvEditDlg" widgetVar="ProvEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditProvTitle}">
+
+            <h:form id="ProvEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{provController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditProvLabel_provId}" for="provId" />
+                        <h:outputText id="provId" value="#{provController.selected.provId}" />
+
+                        <h:outputLabel value="#{bundle.EditProvLabel_provnomb}" for="provnomb" />
+                        <p:inputText id="provnomb" value="#{provController.selected.provnomb}" title="#{bundle.EditProvTitle_provnomb}" required="true" requiredMessage="#{bundle.EditProvRequiredMessage_provnomb}"/>
+
+                        <h:outputLabel value="#{bundle.EditProvLabel_provesta}" for="provesta" />
+                        <p:selectBooleanCheckbox id="provesta" value="#{provController.selected.provesta}" required="true" requiredMessage="#{bundle.EditProvRequiredMessage_provesta}"/>
+
+                        <h:outputLabel value="#{bundle.EditProvLabel_provuing}" for="provuing" />
+                        <p:inputText id="provuing" value="#{provController.selected.provuing}" title="#{bundle.EditProvTitle_provuing}" required="true" requiredMessage="#{bundle.EditProvRequiredMessage_provuing}"/>
+
+                        <h:outputLabel value="#{bundle.EditProvLabel_provfing}" for="provfing" />
+                        <p:calendar id="provfing" pattern="MM/dd/yyyy HH:mm:ss" value="#{provController.selected.provfing}" title="#{bundle.EditProvTitle_provfing}" required="true" requiredMessage="#{bundle.EditProvRequiredMessage_provfing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditProvLabel_provumod}" for="provumod" />
+                        <p:inputText id="provumod" value="#{provController.selected.provumod}" title="#{bundle.EditProvTitle_provumod}" />
+
+                        <h:outputLabel value="#{bundle.EditProvLabel_provfmod}" for="provfmod" />
+                        <p:calendar id="provfmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{provController.selected.provfmod}" title="#{bundle.EditProvTitle_provfmod}"  showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditProvLabel_zonaId}" for="zonaId" />
+                        <p:selectOneMenu id="zonaId" value="#{provController.selected.zonaId}" required="true" requiredMessage="#{bundle.EditProvRequiredMessage_zonaId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{zonaController.items}"
+                                           var="zonaIdItem"
+                                           itemValue="#{zonaIdItem}"
+                                           itemLabel="#{zonaIdItem.zonaId.toString()}"
+                                           />
+                            <f:converter binding="#{zonaConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.EditProvLabel_regiId}" for="regiId" />
+                        <p:selectOneMenu id="regiId" value="#{provController.selected.regiId}" required="true" requiredMessage="#{bundle.EditProvRequiredMessage_regiId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{regiController.items}"
+                                           var="regiIdItem"
+                                           itemValue="#{regiIdItem}"
+                                           itemLabel="#{regiIdItem.regiId.toString()}"
+                                           />
+                            <f:converter binding="#{regiConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{provController.save}" value="#{bundle.Save}" update="display,:ProvListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ProvEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProvEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

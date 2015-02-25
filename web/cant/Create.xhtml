@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CantCreateDlg" widgetVar="CantCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateCantTitle}">
+
+            <h:form id="CantCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cantController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.CreateCantLabel_cantId}" for="cantId" />
+                        <p:inputText id="cantId" value="#{cantController.selected.cantId}" title="#{bundle.CreateCantTitle_cantId}" required="true" requiredMessage="#{bundle.CreateCantRequiredMessage_cantId}"/>
+
+                        <h:outputLabel value="#{bundle.CreateCantLabel_cantnomb}" for="cantnomb" />
+                        <p:inputText id="cantnomb" value="#{cantController.selected.cantnomb}" title="#{bundle.CreateCantTitle_cantnomb}" required="true" requiredMessage="#{bundle.CreateCantRequiredMessage_cantnomb}"/>
+
+                        <h:outputLabel value="#{bundle.CreateCantLabel_provesta}" for="provesta" />
+                        <p:selectBooleanCheckbox id="provesta" value="#{cantController.selected.provesta}"  required="true" requiredMessage="#{bundle.EditCantRequiredMessage_provesta}"/>
+
+                        <h:outputLabel value="#{bundle.CreateCantLabel_cantuing}" for="cantuing" />
+                        <p:inputText id="cantuing" value="#{cantController.selected.cantuing}" title="#{bundle.CreateCantTitle_cantuing}" required="true" requiredMessage="#{bundle.CreateCantRequiredMessage_cantuing}"/>
+
+                        <h:outputLabel value="#{bundle.CreateCantLabel_cantfing}" for="cantfing" />
+                        <p:calendar id="cantfing" pattern="MM/dd/yyyy HH:mm:ss" value="#{cantController.selected.cantfing}" title="#{bundle.EditCantTitle_cantfing}" required="true" requiredMessage="#{bundle.EditCantRequiredMessage_cantfing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.CreateCantLabel_cantumod}" for="cantumod" />
+                        <p:inputText id="cantumod" value="#{cantController.selected.cantumod}" title="#{bundle.CreateCantTitle_cantumod}" />
+
+                        <h:outputLabel value="#{bundle.CreateCantLabel_cantfmod}" for="cantfmod" />
+                        <p:calendar id="cantfmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{cantController.selected.cantfmod}" title="#{bundle.EditCantTitle_cantfmod}"  showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.CreateCantLabel_provId}" for="provId" />
+                        <p:selectOneMenu id="provId" value="#{cantController.selected.provId}" required="true" requiredMessage="#{bundle.EditCantRequiredMessage_provId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{provController.items}"
+                                           var="provIdItem"
+                                           itemValue="#{provIdItem}"
+                                           itemLabel="#{provIdItem.provId.toString()}"
+                                           />
+                            <f:converter binding="#{provConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.CreateCantLabel_distId}" for="distId" />
+                        <p:selectOneMenu id="distId" value="#{cantController.selected.distId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{distController.items}"
+                                           var="distIdItem"
+                                           itemValue="#{distIdItem}"
+                                           itemLabel="#{distIdItem.distId.toString()}"
+                                           />
+                            <f:converter binding="#{distConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cantController.saveNew}" value="#{bundle.Save}" update="display,:CantListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CantCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CantCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

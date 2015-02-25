@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MarcCreateDlg" widgetVar="MarcCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateMarcTitle}">
+
+            <h:form id="MarcCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{marcController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.CreateMarcLabel_marcnomb}" for="marcnomb" />
+                        <p:inputText id="marcnomb" value="#{marcController.selected.marcnomb}" title="#{bundle.CreateMarcTitle_marcnomb}" required="true" requiredMessage="#{bundle.CreateMarcRequiredMessage_marcnomb}"/>
+
+                        <h:outputLabel value="#{bundle.CreateMarcLabel_marcdesc}" for="marcdesc" />
+                        <p:inputText id="marcdesc" value="#{marcController.selected.marcdesc}" title="#{bundle.CreateMarcTitle_marcdesc}" />
+
+                        <h:outputLabel value="#{bundle.CreateMarcLabel_marcfecr}" for="marcfecr" />
+                        <p:calendar id="marcfecr" pattern="MM/dd/yyyy HH:mm:ss" value="#{marcController.selected.marcfecr}" title="#{bundle.EditMarcTitle_marcfecr}"  showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.CreateMarcLabel_marcesta}" for="marcesta" />
+                        <p:inputText id="marcesta" value="#{marcController.selected.marcesta}" title="#{bundle.CreateMarcTitle_marcesta}" />
+
+                        <h:outputLabel value="#{bundle.CreateMarcLabel_marccaes}" for="marccaes" />
+                        <p:inputText id="marccaes" value="#{marcController.selected.marccaes}" title="#{bundle.CreateMarcTitle_marccaes}" />
+
+                        <h:outputLabel value="#{bundle.CreateMarcLabel_marcuing}" for="marcuing" />
+                        <p:inputText id="marcuing" value="#{marcController.selected.marcuing}" title="#{bundle.CreateMarcTitle_marcuing}" required="true" requiredMessage="#{bundle.CreateMarcRequiredMessage_marcuing}"/>
+
+                        <h:outputLabel value="#{bundle.CreateMarcLabel_marcfing}" for="marcfing" />
+                        <p:calendar id="marcfing" pattern="MM/dd/yyyy HH:mm:ss" value="#{marcController.selected.marcfing}" title="#{bundle.EditMarcTitle_marcfing}" required="true" requiredMessage="#{bundle.EditMarcRequiredMessage_marcfing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.CreateMarcLabel_marcumod}" for="marcumod" />
+                        <p:inputText id="marcumod" value="#{marcController.selected.marcumod}" title="#{bundle.CreateMarcTitle_marcumod}" />
+
+                        <h:outputLabel value="#{bundle.CreateMarcLabel_marcfmod}" for="marcfmod" />
+                        <p:calendar id="marcfmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{marcController.selected.marcfmod}" title="#{bundle.EditMarcTitle_marcfmod}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{marcController.saveNew}" value="#{bundle.Save}" update="display,:MarcListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MarcCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MarcCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

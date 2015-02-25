@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UmbViewDlg" widgetVar="UmbViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewUmbTitle}">
+
+            <h:form id="UmbViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{umbController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewUmbLabel_umbId}"/>
+                        <h:outputText value="#{umbController.selected.umbId}" title="#{bundle.ViewUmbTitle_umbId}"/>
+
+                        <h:outputText value="#{bundle.ViewUmbLabel_umbmax}"/>
+                        <h:outputText value="#{umbController.selected.umbmax}" title="#{bundle.ViewUmbTitle_umbmax}"/>
+
+                        <h:outputText value="#{bundle.ViewUmbLabel_umbmin}"/>
+                        <h:outputText value="#{umbController.selected.umbmin}" title="#{bundle.ViewUmbTitle_umbmin}"/>
+
+                        <h:outputText value="#{bundle.ViewUmbLabel_umbuing}"/>
+                        <h:outputText value="#{umbController.selected.umbuing}" title="#{bundle.ViewUmbTitle_umbuing}"/>
+
+                        <h:outputText value="#{bundle.ViewUmbLabel_umbfing}"/>
+                        <h:outputText value="#{umbController.selected.umbfing}" title="#{bundle.ViewUmbTitle_umbfing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewUmbLabel_umbmod}"/>
+                        <h:outputText value="#{umbController.selected.umbmod}" title="#{bundle.ViewUmbTitle_umbmod}"/>
+
+                        <h:outputText value="#{bundle.ViewUmbLabel_umbfmod}"/>
+                        <h:outputText value="#{umbController.selected.umbfmod}" title="#{bundle.ViewUmbTitle_umbfmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewUmbLabel_tipaId}"/>
+                        <h:outputText value="#{umbController.selected.tipaId.tipaId}"/>
+
+                        <h:outputText value="#{bundle.ViewUmbLabel_estaId}"/>
+                        <h:outputText value="#{umbController.selected.estaId.estaId}"/>
+
+                        <h:outputText value="#{bundle.ViewUmbLabel_copaId}"/>
+                        <h:outputText value="#{umbController.selected.copaId.copaId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="UmbViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

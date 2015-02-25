@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InhmCreateDlg" widgetVar="InhmCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateInhmTitle}">
+
+            <h:form id="InhmCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{inhmController.inputInhm != null}">
+
+                        <h:outputLabel value="#{bundle.CreateInhmLabel_liinId}" for="liinId" />
+                        <p:selectOneMenu id="liinId" value="#{inhmController.inputInhm.liinId}" required="true" requiredMessage="#{bundle.EditInhmRequiredMessage_liinId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{liinController.items}"
+                                           var="liinIdItem"
+                                           itemValue="#{liinIdItem}"
+                                           itemLabel="#{liinIdItem.liinnomb}"
+                                           />
+                            <f:converter binding="#{liinConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.CreateInhmLabel_tipsId}" for="tipsId" />
+                        <p:selectOneMenu id="tipsId" value="#{inhmController.inputInhm.tipsId}" required="true" requiredMessage="#{bundle.EditInhmRequiredMessage_tipsId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipsController.items}"
+                                           var="tipsIdItem"
+                                           itemValue="#{tipsIdItem}"
+                                           itemLabel="#{tipsIdItem.tipsnomb}"
+                                           />
+                            <f:converter binding="#{tipsConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.CreateInhmLabel_inhmnomb}" for="inhmnomb" />
+                        <p:inputText id="inhmnomb" value="#{inhmController.inputInhm.inhmnomb}" title="#{bundle.CreateInhmTitle_inhmnomb}" required="true" requiredMessage="#{bundle.CreateInhmRequiredMessage_inhmnomb}"/>
+
+                        <h:outputLabel value="#{bundle.CreateInhmLabel_marcId}" for="marcId" />
+                        <p:selectOneMenu id="marcId" value="#{inhmController.inputInhm.marcId}" required="true" requiredMessage="#{bundle.EditInhmRequiredMessage_marcId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{marcController.items}"
+                                           var="marcIdItem"
+                                           itemValue="#{marcIdItem}"
+                                           itemLabel="#{marcIdItem.marcnomb}"
+                                           />
+                            <f:converter binding="#{marcConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.CreateInhmLabel_inhmmode}" for="inhmmode" />
+                        <p:inputText id="inhmmode" value="#{inhmController.inputInhm.inhmmode}" title="#{bundle.CreateInhmTitle_inhmmode}" />
+
+                        <h:outputLabel value="#{bundle.CreateInhmLabel_inhmseri}" for="inhmseri" />
+                        <p:inputText id="inhmseri" value="#{inhmController.inputInhm.inhmseri}" title="#{bundle.CreateInhmTitle_inhmseri}" />
+
+                        <h:outputLabel value="#{bundle.CreateInhmLabel_inhmaseg}" for="inhmaseg" />
+                        <p:inputText id="inhmaseg" value="#{inhmController.inputInhm.inhmaseg}" title="#{bundle.CreateInhmTitle_inhmaseg}" />
+
+                        <h:outputLabel value="#{bundle.CreateInhmLabel_inhmimag}" for="inhmimag" />
+                        <p:inputTextarea rows="4" cols="30" id="inhmimag" value="#{inhmController.inputInhm.inhmimag}" title="#{bundle.CreateInhmTitle_inhmimag}" />
+
+                        <h:outputLabel value="#{bundle.CreateInhmLabel_inhmesta}" for="inhmesta" />
+                        <p:inputText id="inhmesta" value="#{inhmController.inputInhm.inhmesta}" title="#{bundle.CreateInhmTitle_inhmesta}" />
+
+                        <h:outputLabel value="#{bundle.CreateInhmLabel_inhmobse}" for="inhmobse" />
+                        <p:inputText id="inhmobse" value="#{inhmController.inputInhm.inhmobse}" title="#{bundle.CreateInhmTitle_inhmobse}" />
+
+                        <h:outputLabel value="#{bundle.CreateInhmLabel_inesId}" for="inesId" />
+                        <p:selectOneMenu id="inesId" value="#{inhmController.inputInhm.inesId}" required="true" requiredMessage="#{bundle.EditInhmRequiredMessage_inesId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{inesController.items}"
+                                           var="inesIdItem"
+                                           itemValue="#{inesIdItem}"
+                                           itemLabel="#{inesIdItem.inesnomb}"
+                                           />
+                            <f:converter binding="#{inesConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.CreateInhmLabel_inhmcoda}" for="inhmcoda" />
+                        <p:inputText id="inhmcoda" value="#{inhmController.inputInhm.inhmcoda}" title="#{bundle.CreateInhmTitle_inhmcoda}" />
+
+                        <h:outputLabel value="#{bundle.CreateInhmLabel_inhmcoba}" for="inhmcoba" />
+                        <p:inputText id="inhmcoba" value="#{inhmController.inputInhm.inhmcoba}" title="#{bundle.CreateInhmTitle_inhmcoba}" />
+                        
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{inhmController.guardarInhm()}" value="#{bundle.Save}" update="display,:InhmListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,InhmCreateDialog);"/>
+                    <p:commandButton immediate="true" value="#{bundle.Cancel}" onclick="InhmCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

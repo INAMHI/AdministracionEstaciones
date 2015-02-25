@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AccesCreateDlg" widgetVar="AccesCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateAccesTitle}">
+
+            <h:form id="AccesCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{accesController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.CreateAccesLabel_accesnomb}" for="accesnomb" />
+                        <p:inputText id="accesnomb" value="#{accesController.selected.accesnomb}" title="#{bundle.CreateAccesTitle_accesnomb}" required="true" requiredMessage="#{bundle.CreateAccesRequiredMessage_accesnomb}"/>
+
+                        <h:outputLabel value="#{bundle.CreateAccesLabel_accesdesc}" for="accesdesc" />
+                        <p:inputText id="accesdesc" value="#{accesController.selected.accesdesc}" title="#{bundle.CreateAccesTitle_accesdesc}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{accesController.saveNew}" value="#{bundle.Save}" update="display,:AccesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,AccesCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AccesCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

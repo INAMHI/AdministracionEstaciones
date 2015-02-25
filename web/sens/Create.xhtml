@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SensCreateDlg" widgetVar="SensCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateSensTitle}">
+
+            <h:form id="SensCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sensController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.CreateSensLabel_inhmId}" for="inhmId" />
+                        <p:selectOneMenu id="inhmId" value="#{sensController.selected.inhmId}" required="true" requiredMessage="#{bundle.EditSensRequiredMessage_inhmId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{inhmController.items}"
+                                           var="inhmIdItem"
+                                           itemValue="#{inhmIdItem}"
+                                           itemLabel="#{inhmIdItem.inhmId.toString()}"
+                                           />
+                            <f:converter binding="#{inhmConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sensController.saveNew}" value="#{bundle.Save}" update="display,:SensListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,SensCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SensCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

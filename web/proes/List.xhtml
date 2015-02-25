@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="ProesListForm">
+
+        <p:panel header="#{bundle.ListProesTitle}">
+
+            <p:dataTable id="datalist" value="#{proesController.items}" var="item"
+                         selectionMode="single" selection="#{proesController.selected}"
+                         rowKey="#{item.proesId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.proesId}" filterBy="#{item.proesId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProesTitle_proesId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.proesId}"/>
+                </p:column>
+                <p:column sortBy="#{item.proesnomb}" filterBy="#{item.proesnomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProesTitle_proesnomb}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.proesnomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.proesrep}" filterBy="#{item.proesrep}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProesTitle_proesrep}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.proesrep}"/>
+                </p:column>
+                <p:column sortBy="#{item.proesdir}" filterBy="#{item.proesdir}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProesTitle_proesdir}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.proesdir}"/>
+                </p:column>
+                <p:column sortBy="#{item.proestlf}" filterBy="#{item.proestlf}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProesTitle_proestlf}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.proestlf}"/>
+                </p:column>
+                <p:column sortBy="#{item.proesemai}" filterBy="#{item.proesemai}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProesTitle_proesemai}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.proesemai}"/>
+                </p:column>
+                <p:column sortBy="#{item.proesitec}" filterBy="#{item.proesitec}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProesTitle_proesitec}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.proesitec}"/>
+                </p:column>
+                <p:column sortBy="#{item.proesunig}" filterBy="#{item.proesunig}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProesTitle_proesunig}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.proesunig}"/>
+                </p:column>
+                <p:column sortBy="#{item.proesfing}" filterBy="#{item.proesfing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProesTitle_proesfing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.proesfing}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.proesumod}" filterBy="#{item.proesumod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProesTitle_proesumod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.proesumod}"/>
+                </p:column>
+                <p:column sortBy="#{item.proesfmod}" filterBy="#{item.proesfmod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProesTitle_proesfmod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.proesfmod}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{proesController.prepareCreate}" update=":ProesCreateForm" oncomplete="ProesCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ProesViewForm" oncomplete="ProesViewDialog.show()" disabled="#{empty proesController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProesEditForm" oncomplete="ProesEditDialog.show()" disabled="#{empty proesController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{proesController.delete}" update=":growl,datalist" disabled="#{empty proesController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InutEditDlg" widgetVar="InutEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditInutTitle}">
+
+            <h:form id="InutEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{inutController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditInutLabel_inutId}" for="inutId" />
+                        <h:outputText id="inutId" value="#{inutController.selected.inutId}" />
+
+                        <h:outputLabel value="#{bundle.EditInutLabel_inutuing}" for="inutuing" />
+                        <p:inputText id="inutuing" value="#{inutController.selected.inutuing}" title="#{bundle.EditInutTitle_inutuing}" required="true" requiredMessage="#{bundle.EditInutRequiredMessage_inutuing}"/>
+
+                        <h:outputLabel value="#{bundle.EditInutLabel_inutfing}" for="inutfing" />
+                        <p:calendar id="inutfing" pattern="MM/dd/yyyy HH:mm:ss" value="#{inutController.selected.inutfing}" title="#{bundle.EditInutTitle_inutfing}"  showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditInutLabel_inutumod}" for="inutumod" />
+                        <p:inputText id="inutumod" value="#{inutController.selected.inutumod}" title="#{bundle.EditInutTitle_inutumod}" />
+
+                        <h:outputLabel value="#{bundle.EditInutLabel_inutfmod}" for="inutfmod" />
+                        <p:calendar id="inutfmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{inutController.selected.inutfmod}" title="#{bundle.EditInutTitle_inutfmod}"  showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditInutLabel_umetId}" for="umetId" />
+                        <p:selectOneMenu id="umetId" value="#{inutController.selected.umetId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{umetController.items}"
+                                           var="umetIdItem"
+                                           itemValue="#{umetIdItem}"
+                                           itemLabel="#{umetIdItem.umetId.toString()}"
+                                           />
+                            <f:converter binding="#{umetConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.EditInutLabel_inteId}" for="inteId" />
+                        <p:selectOneMenu id="inteId" value="#{inutController.selected.inteId}" required="true" requiredMessage="#{bundle.EditInutRequiredMessage_inteId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{inteController.items}"
+                                           var="inteIdItem"
+                                           itemValue="#{inteIdItem}"
+                                           itemLabel="#{inteIdItem.inteId.toString()}"
+                                           />
+                            <f:converter binding="#{inteConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{inutController.save}" value="#{bundle.Save}" update="display,:InutListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,InutEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="InutEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

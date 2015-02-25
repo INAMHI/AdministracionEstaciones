@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipsEditDlg" widgetVar="TipsEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditTipsTitle}">
+
+            <h:form id="TipsEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{tipsController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditTipsLabel_tipsId}" for="tipsId" />
+                        <h:outputText id="tipsId" value="#{tipsController.selected.tipsId}" />
+
+                        <h:outputLabel value="#{bundle.EditTipsLabel_tipscodi}" for="tipscodi" />
+                        <p:inputText id="tipscodi" value="#{tipsController.selected.tipscodi}" title="#{bundle.EditTipsTitle_tipscodi}" />
+
+                        <h:outputLabel value="#{bundle.EditTipsLabel_tipsnomb}" for="tipsnomb" />
+                        <p:inputText id="tipsnomb" value="#{tipsController.selected.tipsnomb}" title="#{bundle.EditTipsTitle_tipsnomb}" />
+
+                        <h:outputLabel value="#{bundle.EditTipsLabel_tipstota}" for="tipstota" />
+                        <p:inputText id="tipstota" value="#{tipsController.selected.tipstota}" title="#{bundle.EditTipsTitle_tipstota}" />
+
+                        <h:outputLabel value="#{bundle.EditTipsLabel_espedesc}" for="espedesc" />
+                        <p:inputText id="espedesc" value="#{tipsController.selected.espedesc}" title="#{bundle.EditTipsTitle_espedesc}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tipsController.save}" value="#{bundle.Save}" update="display,:TipsListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,TipsEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TipsEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

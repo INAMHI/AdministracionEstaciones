@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CuenViewDlg" widgetVar="CuenViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewCuenTitle}">
+
+            <h:form id="CuenViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cuenController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewCuenLabel_cuencodi}"/>
+                        <h:outputText value="#{cuenController.selected.cuencodi}" title="#{bundle.ViewCuenTitle_cuencodi}"/>
+
+                        <h:outputText value="#{bundle.ViewCuenLabel_cuennomb}"/>
+                        <h:outputText value="#{cuenController.selected.cuennomb}" title="#{bundle.ViewCuenTitle_cuennomb}"/>
+
+                        <h:outputText value="#{bundle.ViewCuenLabel_cuenesta}"/>
+                        <h:selectBooleanCheckbox id="cuenesta" value="#{cuenController.selected.cuenesta}" title="#{bundle.EditCuenTitle_cuenesta}" required="true" requiredMessage="#{bundle.EditCuenRequiredMessage_cuenesta}" disabled="true"/>
+
+                        <h:outputText value="#{bundle.ViewCuenLabel_cuenId}"/>
+                        <h:outputText value="#{cuenController.selected.cuenId}" title="#{bundle.ViewCuenTitle_cuenId}"/>
+
+                        <h:outputText value="#{bundle.ViewCuenLabel_cuennive}"/>
+                        <h:outputText value="#{cuenController.selected.cuennive}" title="#{bundle.ViewCuenTitle_cuennive}"/>
+
+                        <h:outputText value="#{bundle.ViewCuenLabel_cuenuing}"/>
+                        <h:outputText value="#{cuenController.selected.cuenuing}" title="#{bundle.ViewCuenTitle_cuenuing}"/>
+
+                        <h:outputText value="#{bundle.ViewCuenLabel_cuenfing}"/>
+                        <h:outputText value="#{cuenController.selected.cuenfing}" title="#{bundle.ViewCuenTitle_cuenfing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewCuenLabel_cuenumod}"/>
+                        <h:outputText value="#{cuenController.selected.cuenumod}" title="#{bundle.ViewCuenTitle_cuenumod}"/>
+
+                        <h:outputText value="#{bundle.ViewCuenLabel_cuenfmod}"/>
+                        <h:outputText value="#{cuenController.selected.cuenfmod}" title="#{bundle.ViewCuenTitle_cuenfmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewCuenLabel_estaCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CuenViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UmetEditDlg" widgetVar="UmetEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditUmetTitle}">
+
+            <h:form id="UmetEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{umetController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditUmetLabel_umetId}" for="umetId" />
+                        <h:outputText id="umetId" value="#{umetController.selected.umetId}" />
+
+                        <h:outputLabel value="#{bundle.EditUmetLabel_umetnomb}" for="umetnomb" />
+                        <p:inputText id="umetnomb" value="#{umetController.selected.umetnomb}" title="#{bundle.EditUmetTitle_umetnomb}" required="true" requiredMessage="#{bundle.EditUmetRequiredMessage_umetnomb}"/>
+
+                        <h:outputLabel value="#{bundle.EditUmetLabel_umetuing}" for="umetuing" />
+                        <p:inputText id="umetuing" value="#{umetController.selected.umetuing}" title="#{bundle.EditUmetTitle_umetuing}" required="true" requiredMessage="#{bundle.EditUmetRequiredMessage_umetuing}"/>
+
+                        <h:outputLabel value="#{bundle.EditUmetLabel_umetfing}" for="umetfing" />
+                        <p:calendar id="umetfing" pattern="MM/dd/yyyy HH:mm:ss" value="#{umetController.selected.umetfing}" title="#{bundle.EditUmetTitle_umetfing}" required="true" requiredMessage="#{bundle.EditUmetRequiredMessage_umetfing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditUmetLabel_umetumod}" for="umetumod" />
+                        <p:inputText id="umetumod" value="#{umetController.selected.umetumod}" title="#{bundle.EditUmetTitle_umetumod}" />
+
+                        <h:outputLabel value="#{bundle.EditUmetLabel_umetfmod}" for="umetfmod" />
+                        <p:calendar id="umetfmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{umetController.selected.umetfmod}" title="#{bundle.EditUmetTitle_umetfmod}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{umetController.save}" value="#{bundle.Save}" update="display,:UmetListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UmetEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UmetEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

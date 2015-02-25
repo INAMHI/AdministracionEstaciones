@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="CaptoListForm">
+
+        <p:panel header="#{bundle.ListCaptoTitle}">
+
+            <p:dataTable id="datalist" value="#{captoController.items}" var="item"
+                         selectionMode="single" selection="#{captoController.selected}"
+                         rowKey="#{item.captoId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.captoId}" filterBy="#{item.captoId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCaptoTitle_captoId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.captoId}"/>
+                </p:column>
+                <p:column sortBy="#{item.captonomb}" filterBy="#{item.captonomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCaptoTitle_captonomb}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.captonomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.captodesc}" filterBy="#{item.captodesc}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCaptoTitle_captodesc}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.captodesc}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{captoController.prepareCreate}" update=":CaptoCreateForm" oncomplete="CaptoCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CaptoViewForm" oncomplete="CaptoViewDialog.show()" disabled="#{empty captoController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CaptoEditForm" oncomplete="CaptoEditDialog.show()" disabled="#{empty captoController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{captoController.delete}" update=":growl,datalist" disabled="#{empty captoController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

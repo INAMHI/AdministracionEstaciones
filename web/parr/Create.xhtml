@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ParrCreateDlg" widgetVar="ParrCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateParrTitle}">
+
+            <h:form id="ParrCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{parrController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.CreateParrLabel_parrId}" for="parrId" />
+                        <p:inputText id="parrId" value="#{parrController.selected.parrId}" title="#{bundle.CreateParrTitle_parrId}" required="true" requiredMessage="#{bundle.CreateParrRequiredMessage_parrId}"/>
+
+                        <h:outputLabel value="#{bundle.CreateParrLabel_parrnomb}" for="parrnomb" />
+                        <p:inputText id="parrnomb" value="#{parrController.selected.parrnomb}" title="#{bundle.CreateParrTitle_parrnomb}" required="true" requiredMessage="#{bundle.CreateParrRequiredMessage_parrnomb}"/>
+
+                        <h:outputLabel value="#{bundle.CreateParrLabel_parresta}" for="parresta" />
+                        <p:selectBooleanCheckbox id="parresta" value="#{parrController.selected.parresta}" required="true" requiredMessage="#{bundle.EditParrRequiredMessage_parresta}"/>
+
+                        <h:outputLabel value="#{bundle.CreateParrLabel_parruing}" for="parruing" />
+                        <p:inputText id="parruing" value="#{parrController.selected.parruing}" title="#{bundle.CreateParrTitle_parruing}" required="true" requiredMessage="#{bundle.CreateParrRequiredMessage_parruing}"/>
+
+                        <h:outputLabel value="#{bundle.CreateParrLabel_parrfing}" for="parrfing" />
+                        <p:calendar id="parrfing" pattern="MM/dd/yyyy HH:mm:ss" value="#{parrController.selected.parrfing}" title="#{bundle.EditParrTitle_parrfing}" required="true" requiredMessage="#{bundle.EditParrRequiredMessage_parrfing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.CreateParrLabel_parrumod}" for="parrumod" />
+                        <p:inputText id="parrumod" value="#{parrController.selected.parrumod}" title="#{bundle.CreateParrTitle_parrumod}" />
+
+                        <h:outputLabel value="#{bundle.CreateParrLabel_parrfmod}" for="parrfmod" />
+                        <p:calendar id="parrfmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{parrController.selected.parrfmod}" title="#{bundle.EditParrTitle_parrfmod}"  showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.CreateParrLabel_cantId}" for="cantId" />
+                        <p:selectOneMenu id="cantId" value="#{parrController.selected.cantId}" required="true" requiredMessage="#{bundle.EditParrRequiredMessage_cantId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{cantController.items}"
+                                           var="cantIdItem"
+                                           itemValue="#{cantIdItem}"
+                                           itemLabel="#{cantIdItem.cantId.toString()}"
+                                           />
+                            <f:converter binding="#{cantConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{parrController.saveNew}" value="#{bundle.Save}" update="display,:ParrListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ParrCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ParrCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

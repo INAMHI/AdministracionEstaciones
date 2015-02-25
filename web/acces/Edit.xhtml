@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AccesEditDlg" widgetVar="AccesEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditAccesTitle}">
+
+            <h:form id="AccesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{accesController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditAccesLabel_accesId}" for="accesId" />
+                        <h:outputText id="accesId" value="#{accesController.selected.accesId}" />
+
+                        <h:outputLabel value="#{bundle.EditAccesLabel_accesnomb}" for="accesnomb" />
+                        <p:inputText id="accesnomb" value="#{accesController.selected.accesnomb}" title="#{bundle.EditAccesTitle_accesnomb}" required="true" requiredMessage="#{bundle.EditAccesRequiredMessage_accesnomb}"/>
+
+                        <h:outputLabel value="#{bundle.EditAccesLabel_accesdesc}" for="accesdesc" />
+                        <p:inputText id="accesdesc" value="#{accesController.selected.accesdesc}" title="#{bundle.EditAccesTitle_accesdesc}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{accesController.save}" value="#{bundle.Save}" update="display,:AccesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,AccesEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AccesEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

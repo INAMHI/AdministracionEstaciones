@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CuenEditDlg" widgetVar="CuenEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditCuenTitle}">
+
+            <h:form id="CuenEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{cuenController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditCuenLabel_cuencodi}" for="cuencodi" />
+                        <p:inputText id="cuencodi" value="#{cuenController.selected.cuencodi}" title="#{bundle.EditCuenTitle_cuencodi}" />
+
+                        <h:outputLabel value="#{bundle.EditCuenLabel_cuennomb}" for="cuennomb" />
+                        <p:inputText id="cuennomb" value="#{cuenController.selected.cuennomb}" title="#{bundle.EditCuenTitle_cuennomb}" required="true" requiredMessage="#{bundle.EditCuenRequiredMessage_cuennomb}"/>
+
+                        <h:outputLabel value="#{bundle.EditCuenLabel_cuenesta}" for="cuenesta" />
+                        <p:selectBooleanCheckbox id="cuenesta" value="#{cuenController.selected.cuenesta}" required="true" requiredMessage="#{bundle.EditCuenRequiredMessage_cuenesta}"/>
+
+                        <h:outputLabel value="#{bundle.EditCuenLabel_cuenId}" for="cuenId" />
+                        <h:outputText id="cuenId" value="#{cuenController.selected.cuenId}" />
+
+                        <h:outputLabel value="#{bundle.EditCuenLabel_cuennive}" for="cuennive" />
+                        <p:inputText id="cuennive" value="#{cuenController.selected.cuennive}" title="#{bundle.EditCuenTitle_cuennive}" />
+
+                        <h:outputLabel value="#{bundle.EditCuenLabel_cuenuing}" for="cuenuing" />
+                        <p:inputText id="cuenuing" value="#{cuenController.selected.cuenuing}" title="#{bundle.EditCuenTitle_cuenuing}" required="true" requiredMessage="#{bundle.EditCuenRequiredMessage_cuenuing}"/>
+
+                        <h:outputLabel value="#{bundle.EditCuenLabel_cuenfing}" for="cuenfing" />
+                        <p:calendar id="cuenfing" pattern="MM/dd/yyyy HH:mm:ss" value="#{cuenController.selected.cuenfing}" title="#{bundle.EditCuenTitle_cuenfing}" required="true" requiredMessage="#{bundle.EditCuenRequiredMessage_cuenfing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditCuenLabel_cuenumod}" for="cuenumod" />
+                        <p:inputText id="cuenumod" value="#{cuenController.selected.cuenumod}" title="#{bundle.EditCuenTitle_cuenumod}" />
+
+                        <h:outputLabel value="#{bundle.EditCuenLabel_cuenfmod}" for="cuenfmod" />
+                        <p:calendar id="cuenfmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{cuenController.selected.cuenfmod}" title="#{bundle.EditCuenTitle_cuenfmod}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cuenController.save}" value="#{bundle.Save}" update="display,:CuenListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CuenEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CuenEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

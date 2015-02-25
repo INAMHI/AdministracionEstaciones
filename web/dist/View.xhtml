@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DistViewDlg" widgetVar="DistViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewDistTitle}">
+
+            <h:form id="DistViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{distController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewDistLabel_distId}"/>
+                        <h:outputText value="#{distController.selected.distId}" title="#{bundle.ViewDistTitle_distId}"/>
+
+                        <h:outputText value="#{bundle.ViewDistLabel_distcant}"/>
+                        <h:outputText value="#{distController.selected.distcant}" title="#{bundle.ViewDistTitle_distcant}"/>
+
+                        <h:outputText value="#{bundle.ViewDistLabel_distobse}"/>
+                        <h:outputText value="#{distController.selected.distobse}" title="#{bundle.ViewDistTitle_distobse}"/>
+
+                        <h:outputText value="#{bundle.ViewDistLabel_distuing}"/>
+                        <h:outputText value="#{distController.selected.distuing}" title="#{bundle.ViewDistTitle_distuing}"/>
+
+                        <h:outputText value="#{bundle.ViewDistLabel_distfing}"/>
+                        <h:outputText value="#{distController.selected.distfing}" title="#{bundle.ViewDistTitle_distfing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewDistLabel_distumod}"/>
+                        <h:outputText value="#{distController.selected.distumod}" title="#{bundle.ViewDistTitle_distumod}"/>
+
+                        <h:outputText value="#{bundle.ViewDistLabel_distfmod}"/>
+                        <h:outputText value="#{distController.selected.distfmod}" title="#{bundle.ViewDistTitle_distfmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewDistLabel_cantCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DistViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

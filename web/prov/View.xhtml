@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProvViewDlg" widgetVar="ProvViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewProvTitle}">
+
+            <h:form id="ProvViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{provController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewProvLabel_provId}"/>
+                        <h:outputText value="#{provController.selected.provId}" title="#{bundle.ViewProvTitle_provId}"/>
+
+                        <h:outputText value="#{bundle.ViewProvLabel_provnomb}"/>
+                        <h:outputText value="#{provController.selected.provnomb}" title="#{bundle.ViewProvTitle_provnomb}"/>
+
+                        <h:outputText value="#{bundle.ViewProvLabel_provesta}"/>
+                        <h:selectBooleanCheckbox id="provesta" value="#{provController.selected.provesta}" title="#{bundle.EditProvTitle_provesta}" required="true" requiredMessage="#{bundle.EditProvRequiredMessage_provesta}" disabled="true"/>
+
+                        <h:outputText value="#{bundle.ViewProvLabel_provuing}"/>
+                        <h:outputText value="#{provController.selected.provuing}" title="#{bundle.ViewProvTitle_provuing}"/>
+
+                        <h:outputText value="#{bundle.ViewProvLabel_provfing}"/>
+                        <h:outputText value="#{provController.selected.provfing}" title="#{bundle.ViewProvTitle_provfing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewProvLabel_provumod}"/>
+                        <h:outputText value="#{provController.selected.provumod}" title="#{bundle.ViewProvTitle_provumod}"/>
+
+                        <h:outputText value="#{bundle.ViewProvLabel_provfmod}"/>
+                        <h:outputText value="#{provController.selected.provfmod}" title="#{bundle.ViewProvTitle_provfmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewProvLabel_zonaId}"/>
+                        <h:outputText value="#{provController.selected.zonaId.zonaId}"/>
+
+                        <h:outputText value="#{bundle.ViewProvLabel_regiId}"/>
+                        <h:outputText value="#{provController.selected.regiId.regiId}"/>
+
+                        <h:outputText value="#{bundle.ViewProvLabel_cantCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ProvViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

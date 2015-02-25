@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ParrViewDlg" widgetVar="ParrViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewParrTitle}">
+
+            <h:form id="ParrViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{parrController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewParrLabel_parrId}"/>
+                        <h:outputText value="#{parrController.selected.parrId}" title="#{bundle.ViewParrTitle_parrId}"/>
+
+                        <h:outputText value="#{bundle.ViewParrLabel_parrnomb}"/>
+                        <h:outputText value="#{parrController.selected.parrnomb}" title="#{bundle.ViewParrTitle_parrnomb}"/>
+
+                        <h:outputText value="#{bundle.ViewParrLabel_parresta}"/>
+                        <h:selectBooleanCheckbox id="parresta" value="#{parrController.selected.parresta}" title="#{bundle.EditParrTitle_parresta}" required="true" requiredMessage="#{bundle.EditParrRequiredMessage_parresta}" disabled="true"/>
+
+                        <h:outputText value="#{bundle.ViewParrLabel_parruing}"/>
+                        <h:outputText value="#{parrController.selected.parruing}" title="#{bundle.ViewParrTitle_parruing}"/>
+
+                        <h:outputText value="#{bundle.ViewParrLabel_parrfing}"/>
+                        <h:outputText value="#{parrController.selected.parrfing}" title="#{bundle.ViewParrTitle_parrfing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewParrLabel_parrumod}"/>
+                        <h:outputText value="#{parrController.selected.parrumod}" title="#{bundle.ViewParrTitle_parrumod}"/>
+
+                        <h:outputText value="#{bundle.ViewParrLabel_parrfmod}"/>
+                        <h:outputText value="#{parrController.selected.parrfmod}" title="#{bundle.ViewParrTitle_parrfmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewParrLabel_cantId}"/>
+                        <h:outputText value="#{parrController.selected.cantId.cantId}"/>
+
+                        <h:outputText value="#{bundle.ViewParrLabel_estaCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ParrViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

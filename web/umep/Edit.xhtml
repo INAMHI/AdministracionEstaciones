@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UmepEditDlg" widgetVar="UmepEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditUmepTitle}">
+
+            <h:form id="UmepEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{umepController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditUmepLabel_umepId}" for="umepId" />
+                        <h:outputText id="umepId" value="#{umepController.selected.umepId}" />
+
+                        <h:outputLabel value="#{bundle.EditUmepLabel_umepsimb}" for="umepsimb" />
+                        <p:inputText id="umepsimb" value="#{umepController.selected.umepsimb}" title="#{bundle.EditUmepTitle_umepsimb}" required="true" requiredMessage="#{bundle.EditUmepRequiredMessage_umepsimb}"/>
+
+                        <h:outputLabel value="#{bundle.EditUmepLabel_umepnomb}" for="umepnomb" />
+                        <p:inputText id="umepnomb" value="#{umepController.selected.umepnomb}" title="#{bundle.EditUmepTitle_umepnomb}" required="true" requiredMessage="#{bundle.EditUmepRequiredMessage_umepnomb}"/>
+
+                        <h:outputLabel value="#{bundle.EditUmepLabel_umepuing}" for="umepuing" />
+                        <p:inputText id="umepuing" value="#{umepController.selected.umepuing}" title="#{bundle.EditUmepTitle_umepuing}" required="true" requiredMessage="#{bundle.EditUmepRequiredMessage_umepuing}"/>
+
+                        <h:outputLabel value="#{bundle.EditUmepLabel_umepumod}" for="umepumod" />
+                        <p:inputText id="umepumod" value="#{umepController.selected.umepumod}" title="#{bundle.EditUmepTitle_umepumod}" />
+
+                        <h:outputLabel value="#{bundle.EditUmepLabel_umepcodi}" for="umepcodi" />
+                        <p:inputText id="umepcodi" value="#{umepController.selected.umepcodi}" title="#{bundle.EditUmepTitle_umepcodi}" />
+
+                        <h:outputLabel value="#{bundle.EditUmepLabel_umepfing}" for="umepfing" />
+                        <p:calendar id="umepfing" pattern="MM/dd/yyyy HH:mm:ss" value="#{umepController.selected.umepfing}" title="#{bundle.EditUmepTitle_umepfing}"  showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditUmepLabel_umepfmod}" for="umepfmod" />
+                        <p:calendar id="umepfmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{umepController.selected.umepfmod}" title="#{bundle.EditUmepTitle_umepfmod}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{umepController.save}" value="#{bundle.Save}" update="display,:UmepListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UmepEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UmepEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

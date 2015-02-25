@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipaViewDlg" widgetVar="TipaViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewTipaTitle}">
+
+            <h:form id="TipaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipaController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewTipaLabel_tipaId}"/>
+                        <h:outputText value="#{tipaController.selected.tipaId}" title="#{bundle.ViewTipaTitle_tipaId}"/>
+
+                        <h:outputText value="#{bundle.ViewTipaLabel_tipacodi}"/>
+                        <h:outputText value="#{tipaController.selected.tipacodi}" title="#{bundle.ViewTipaTitle_tipacodi}"/>
+
+                        <h:outputText value="#{bundle.ViewTipaLabel_tipanomb}"/>
+                        <h:outputText value="#{tipaController.selected.tipanomb}" title="#{bundle.ViewTipaTitle_tipanomb}"/>
+
+                        <h:outputText value="#{bundle.ViewTipaLabel_tipaobse}"/>
+                        <h:outputText value="#{tipaController.selected.tipaobse}" title="#{bundle.ViewTipaTitle_tipaobse}"/>
+
+                        <h:outputText value="#{bundle.ViewTipaLabel_tipauing}"/>
+                        <h:outputText value="#{tipaController.selected.tipauing}" title="#{bundle.ViewTipaTitle_tipauing}"/>
+
+                        <h:outputText value="#{bundle.ViewTipaLabel_tipafing}"/>
+                        <h:outputText value="#{tipaController.selected.tipafing}" title="#{bundle.ViewTipaTitle_tipafing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewTipaLabel_tipaumod}"/>
+                        <h:outputText value="#{tipaController.selected.tipaumod}" title="#{bundle.ViewTipaTitle_tipaumod}"/>
+
+                        <h:outputText value="#{bundle.ViewTipaLabel_tipafmod}"/>
+                        <h:outputText value="#{tipaController.selected.tipafmod}" title="#{bundle.ViewTipaTitle_tipafmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewTipaLabel_umbCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TipaViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

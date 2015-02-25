@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TiparEditDlg" widgetVar="TiparEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditTiparTitle}">
+
+            <h:form id="TiparEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{tiparController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditTiparLabel_tiparId}" for="tiparId" />
+                        <h:outputText id="tiparId" value="#{tiparController.selected.tiparId}" />
+
+                        <h:outputLabel value="#{bundle.EditTiparLabel_tipoId}" for="tipoId" />
+                        <p:selectOneMenu id="tipoId" value="#{tiparController.selected.tipoId}" required="true" requiredMessage="#{bundle.EditTiparRequiredMessage_tipoId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoController.items}"
+                                           var="tipoIdItem"
+                                           itemValue="#{tipoIdItem}"
+                                           itemLabel="#{tipoIdItem.tiponomb} - #{tipoIdItem.cateId.catenomb} "
+                                           />
+                            <f:converter binding="#{tipoConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.EditTiparLabel_parmId}" for="parmId" />
+                        <p:selectOneMenu id="parmId" value="#{tiparController.selected.parmId}" required="true" requiredMessage="#{bundle.EditTiparRequiredMessage_parmId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{parmController.items}"
+                                           var="parmIdItem"
+                                           itemValue="#{parmIdItem}"
+                                           itemLabel="#{parmIdItem.parmdesc}"
+                                           />
+                            <f:converter binding="#{parmConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tiparController.save}" value="#{bundle.Save}" update="display,:TiparListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,TiparEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TiparEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

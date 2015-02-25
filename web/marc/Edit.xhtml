@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MarcEditDlg" widgetVar="MarcEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditMarcTitle}">
+
+            <h:form id="MarcEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{marcController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditMarcLabel_marcId}" for="marcId" />
+                        <h:outputText id="marcId" value="#{marcController.selected.marcId}" />
+
+                        <h:outputLabel value="#{bundle.EditMarcLabel_marcnomb}" for="marcnomb" />
+                        <p:inputText id="marcnomb" value="#{marcController.selected.marcnomb}" title="#{bundle.EditMarcTitle_marcnomb}" required="true" requiredMessage="#{bundle.EditMarcRequiredMessage_marcnomb}"/>
+
+                        <h:outputLabel value="#{bundle.EditMarcLabel_marcdesc}" for="marcdesc" />
+                        <p:inputText id="marcdesc" value="#{marcController.selected.marcdesc}" title="#{bundle.EditMarcTitle_marcdesc}" />
+
+                        <h:outputLabel value="#{bundle.EditMarcLabel_marcfecr}" for="marcfecr" />
+                        <p:calendar id="marcfecr" pattern="MM/dd/yyyy HH:mm:ss" value="#{marcController.selected.marcfecr}" title="#{bundle.EditMarcTitle_marcfecr}"  showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditMarcLabel_marcesta}" for="marcesta" />
+                        <p:inputText id="marcesta" value="#{marcController.selected.marcesta}" title="#{bundle.EditMarcTitle_marcesta}" />
+
+                        <h:outputLabel value="#{bundle.EditMarcLabel_marccaes}" for="marccaes" />
+                        <p:inputText id="marccaes" value="#{marcController.selected.marccaes}" title="#{bundle.EditMarcTitle_marccaes}" />
+
+                        <h:outputLabel value="#{bundle.EditMarcLabel_marcuing}" for="marcuing" />
+                        <p:inputText id="marcuing" value="#{marcController.selected.marcuing}" title="#{bundle.EditMarcTitle_marcuing}" required="true" requiredMessage="#{bundle.EditMarcRequiredMessage_marcuing}"/>
+
+                        <h:outputLabel value="#{bundle.EditMarcLabel_marcfing}" for="marcfing" />
+                        <p:calendar id="marcfing" pattern="MM/dd/yyyy HH:mm:ss" value="#{marcController.selected.marcfing}" title="#{bundle.EditMarcTitle_marcfing}" required="true" requiredMessage="#{bundle.EditMarcRequiredMessage_marcfing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditMarcLabel_marcumod}" for="marcumod" />
+                        <p:inputText id="marcumod" value="#{marcController.selected.marcumod}" title="#{bundle.EditMarcTitle_marcumod}" />
+
+                        <h:outputLabel value="#{bundle.EditMarcLabel_marcfmod}" for="marcfmod" />
+                        <p:calendar id="marcfmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{marcController.selected.marcfmod}" title="#{bundle.EditMarcTitle_marcfmod}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{marcController.save}" value="#{bundle.Save}" update="display,:MarcListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MarcEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MarcEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

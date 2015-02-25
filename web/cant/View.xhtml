@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CantViewDlg" widgetVar="CantViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewCantTitle}">
+
+            <h:form id="CantViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cantController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewCantLabel_cantId}"/>
+                        <h:outputText value="#{cantController.selected.cantId}" title="#{bundle.ViewCantTitle_cantId}"/>
+
+                        <h:outputText value="#{bundle.ViewCantLabel_cantnomb}"/>
+                        <h:outputText value="#{cantController.selected.cantnomb}" title="#{bundle.ViewCantTitle_cantnomb}"/>
+
+                        <h:outputText value="#{bundle.ViewCantLabel_provesta}"/>
+                        <h:selectBooleanCheckbox id="provesta" value="#{cantController.selected.provesta}" title="#{bundle.EditCantTitle_provesta}" required="true" requiredMessage="#{bundle.EditCantRequiredMessage_provesta}" disabled="true"/>
+
+                        <h:outputText value="#{bundle.ViewCantLabel_cantuing}"/>
+                        <h:outputText value="#{cantController.selected.cantuing}" title="#{bundle.ViewCantTitle_cantuing}"/>
+
+                        <h:outputText value="#{bundle.ViewCantLabel_cantfing}"/>
+                        <h:outputText value="#{cantController.selected.cantfing}" title="#{bundle.ViewCantTitle_cantfing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewCantLabel_cantumod}"/>
+                        <h:outputText value="#{cantController.selected.cantumod}" title="#{bundle.ViewCantTitle_cantumod}"/>
+
+                        <h:outputText value="#{bundle.ViewCantLabel_cantfmod}"/>
+                        <h:outputText value="#{cantController.selected.cantfmod}" title="#{bundle.ViewCantTitle_cantfmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewCantLabel_provId}"/>
+                        <h:outputText value="#{cantController.selected.provId.provId}"/>
+
+                        <h:outputText value="#{bundle.ViewCantLabel_distId}"/>
+                        <h:outputText value="#{cantController.selected.distId.distId}"/>
+
+                        <h:outputText value="#{bundle.ViewCantLabel_parrCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CantViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

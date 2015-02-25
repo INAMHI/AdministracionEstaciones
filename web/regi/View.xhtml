@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RegiViewDlg" widgetVar="RegiViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewRegiTitle}">
+
+            <h:form id="RegiViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{regiController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewRegiLabel_regiId}"/>
+                        <h:outputText value="#{regiController.selected.regiId}" title="#{bundle.ViewRegiTitle_regiId}"/>
+
+                        <h:outputText value="#{bundle.ViewRegiLabel_reginomb}"/>
+                        <h:outputText value="#{regiController.selected.reginomb}" title="#{bundle.ViewRegiTitle_reginomb}"/>
+
+                        <h:outputText value="#{bundle.ViewRegiLabel_regiesta}"/>
+                        <h:selectBooleanCheckbox id="regiesta" value="#{regiController.selected.regiesta}" title="#{bundle.EditRegiTitle_regiesta}" required="true" requiredMessage="#{bundle.EditRegiRequiredMessage_regiesta}" disabled="true"/>
+
+                        <h:outputText value="#{bundle.ViewRegiLabel_regiuing}"/>
+                        <h:outputText value="#{regiController.selected.regiuing}" title="#{bundle.ViewRegiTitle_regiuing}"/>
+
+                        <h:outputText value="#{bundle.ViewRegiLabel_regifing}"/>
+                        <h:outputText value="#{regiController.selected.regifing}" title="#{bundle.ViewRegiTitle_regifing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewRegiLabel_regiumod}"/>
+                        <h:outputText value="#{regiController.selected.regiumod}" title="#{bundle.ViewRegiTitle_regiumod}"/>
+
+                        <h:outputText value="#{bundle.ViewRegiLabel_regifmod}"/>
+                        <h:outputText value="#{regiController.selected.regifmod}" title="#{bundle.ViewRegiTitle_regifmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewRegiLabel_provCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="RegiViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

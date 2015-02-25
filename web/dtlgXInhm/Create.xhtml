@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DtlgXInhmCreateDlg" widgetVar="DtlgXInhmCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateDtlgXInhmTitle}">
+
+            <h:form id="DtlgXInhmCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{dtlgXInhmController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.CreateDtlgXInhmLabel_dtlgId}" for="dtlgId" />
+                        <p:inputText id="dtlgId" value="#{dtlgXInhmController.selected.dtlgId}" title="#{bundle.CreateDtlgXInhmTitle_dtlgId}" />
+
+                        <h:outputLabel value="#{bundle.CreateDtlgXInhmLabel_inhmId}" for="inhmId" />
+                        <p:inputText id="inhmId" value="#{dtlgXInhmController.selected.inhmId}" title="#{bundle.CreateDtlgXInhmTitle_inhmId}" />
+
+                        <h:outputLabel value="#{bundle.CreateDtlgXInhmLabel_mdtlId}" for="mdtlId" />
+                        <p:inputText id="mdtlId" value="#{dtlgXInhmController.selected.mdtlId}" title="#{bundle.CreateDtlgXInhmTitle_mdtlId}" />
+
+                        <h:outputLabel value="#{bundle.CreateDtlgXInhmLabel_liinId}" for="liinId" />
+                        <p:inputText id="liinId" value="#{dtlgXInhmController.selected.liinId}" title="#{bundle.CreateDtlgXInhmTitle_liinId}" />
+
+                        <h:outputLabel value="#{bundle.CreateDtlgXInhmLabel_marcId}" for="marcId" />
+                        <p:inputText id="marcId" value="#{dtlgXInhmController.selected.marcId}" title="#{bundle.CreateDtlgXInhmTitle_marcId}" />
+
+                        <h:outputLabel value="#{bundle.CreateDtlgXInhmLabel_tipsId}" for="tipsId" />
+                        <p:inputText id="tipsId" value="#{dtlgXInhmController.selected.tipsId}" title="#{bundle.CreateDtlgXInhmTitle_tipsId}" />
+
+                        <h:outputLabel value="#{bundle.CreateDtlgXInhmLabel_inesId}" for="inesId" />
+                        <p:inputText id="inesId" value="#{dtlgXInhmController.selected.inesId}" title="#{bundle.CreateDtlgXInhmTitle_inesId}" />
+
+                        <h:outputLabel value="#{bundle.CreateDtlgXInhmLabel_inhmnomb}" for="inhmnomb" />
+                        <p:inputText id="inhmnomb" value="#{dtlgXInhmController.selected.inhmnomb}" title="#{bundle.CreateDtlgXInhmTitle_inhmnomb}" />
+
+                        <h:outputLabel value="#{bundle.CreateDtlgXInhmLabel_inhmmode}" for="inhmmode" />
+                        <p:inputText id="inhmmode" value="#{dtlgXInhmController.selected.inhmmode}" title="#{bundle.CreateDtlgXInhmTitle_inhmmode}" />
+
+                        <h:outputLabel value="#{bundle.CreateDtlgXInhmLabel_inhmseri}" for="inhmseri" />
+                        <p:inputText id="inhmseri" value="#{dtlgXInhmController.selected.inhmseri}" title="#{bundle.CreateDtlgXInhmTitle_inhmseri}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{dtlgXInhmController.saveNew}" value="#{bundle.Save}" update="display,:DtlgXInhmListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DtlgXInhmCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DtlgXInhmCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

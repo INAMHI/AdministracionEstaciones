@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DtlgXInhmEditDlg" widgetVar="DtlgXInhmEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditDtlgXInhmTitle}">
+
+            <h:form id="DtlgXInhmEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{dtlgXInhmController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditDtlgXInhmLabel_dtlgId}" for="dtlgId" />
+                        <h:outputText id="dtlgId" value="#{dtlgXInhmController.selected.dtlgId}" />
+
+                        <h:outputLabel value="#{bundle.EditDtlgXInhmLabel_inhmId}" for="inhmId" />
+                        <p:inputText id="inhmId" value="#{dtlgXInhmController.selected.inhmId}" title="#{bundle.EditDtlgXInhmTitle_inhmId}" />
+
+                        <h:outputLabel value="#{bundle.EditDtlgXInhmLabel_mdtlId}" for="mdtlId" />
+                        <p:inputText id="mdtlId" value="#{dtlgXInhmController.selected.mdtlId}" title="#{bundle.EditDtlgXInhmTitle_mdtlId}" />
+
+                        <h:outputLabel value="#{bundle.EditDtlgXInhmLabel_liinId}" for="liinId" />
+                        <p:inputText id="liinId" value="#{dtlgXInhmController.selected.liinId}" title="#{bundle.EditDtlgXInhmTitle_liinId}" />
+
+                        <h:outputLabel value="#{bundle.EditDtlgXInhmLabel_marcId}" for="marcId" />
+                        <p:inputText id="marcId" value="#{dtlgXInhmController.selected.marcId}" title="#{bundle.EditDtlgXInhmTitle_marcId}" />
+
+                        <h:outputLabel value="#{bundle.EditDtlgXInhmLabel_tipsId}" for="tipsId" />
+                        <p:inputText id="tipsId" value="#{dtlgXInhmController.selected.tipsId}" title="#{bundle.EditDtlgXInhmTitle_tipsId}" />
+
+                        <h:outputLabel value="#{bundle.EditDtlgXInhmLabel_inesId}" for="inesId" />
+                        <p:inputText id="inesId" value="#{dtlgXInhmController.selected.inesId}" title="#{bundle.EditDtlgXInhmTitle_inesId}" />
+
+                        <h:outputLabel value="#{bundle.EditDtlgXInhmLabel_inhmnomb}" for="inhmnomb" />
+                        <p:inputText id="inhmnomb" value="#{dtlgXInhmController.selected.inhmnomb}" title="#{bundle.EditDtlgXInhmTitle_inhmnomb}" />
+
+                        <h:outputLabel value="#{bundle.EditDtlgXInhmLabel_inhmmode}" for="inhmmode" />
+                        <p:inputText id="inhmmode" value="#{dtlgXInhmController.selected.inhmmode}" title="#{bundle.EditDtlgXInhmTitle_inhmmode}" />
+
+                        <h:outputLabel value="#{bundle.EditDtlgXInhmLabel_inhmseri}" for="inhmseri" />
+                        <p:inputText id="inhmseri" value="#{dtlgXInhmController.selected.inhmseri}" title="#{bundle.EditDtlgXInhmTitle_inhmseri}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{dtlgXInhmController.save}" value="#{bundle.Save}" update="display,:DtlgXInhmListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DtlgXInhmEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DtlgXInhmEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <h:form id="menuForm">
+            <p:menubar>
+                <p:menuitem value="#{bundle.Home}" url="/faces/index.xhtml" icon="ui-icon-home"/>
+                <p:submenu label="#{bundle.Maintenance}">
+                    <p:menuitem value="Copa" url="/faces//copa/index.xhtml" />
+                    <p:menuitem value="Cpesta" url="/faces//cpesta/index.xhtml" />
+                    <p:menuitem value="Esta" url="/faces//esta/index.xhtml" />
+                    <p:menuitem value="Estd" url="/faces//estd/index.xhtml" />
+                    <p:menuitem value="Inte" url="/faces//inte/index.xhtml" />
+                    <p:menuitem value="Inut" url="/faces//inut/index.xhtml" />
+                    <p:menuitem value="Umep" url="/faces//umep/index.xhtml" />
+                    <p:menuitem value="Umet" url="/faces//umet/index.xhtml" />
+                    <p:menuitem value="Capto" url="/faces//capto/index.xhtml" />
+                    <p:menuitem value="Cati" url="/faces//cati/index.xhtml" />
+                    <p:menuitem value="Cfges" url="/faces//cfges/index.xhtml" />
+                    <p:menuitem value="Escat" url="/faces//escat/index.xhtml" />
+                    <p:menuitem value="Inhm" url="/faces//inhm/index.xhtml" />
+                    <p:menuitem value="Tipo" url="/faces//tipo/index.xhtml" />
+                    <p:menuitem value="Cate" url="/faces//cate/index.xhtml" />
+                    <p:menuitem value="Parm" url="/faces//parm/index.xhtml" />
+                    
+                    <p:menuitem value="Tipar" url="/faces//tipar/index.xhtml" />
+                    <p:menuitem value="Tipo" url="/faces//tipo/index.xhtml" />
+                     
+                    <p:menuitem value="Umbgraf1h" url="/faces//umbgraf1h/index.xhtml" />
+                </p:submenu>
+            </p:menubar>
+        </h:form>
+    </ui:composition>
+</html>

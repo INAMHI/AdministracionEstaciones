@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EstaViewDlg" widgetVar="EstaViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewEstaTitle}">
+
+            <h:form id="EstaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{estaController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_estaId}"/>
+                        <h:outputText value="#{estaController.selected.estaId}" title="#{bundle.ViewEstaTitle_estaId}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_estacodi}"/>
+                        <h:outputText value="#{estaController.selected.estacodi}" title="#{bundle.ViewEstaTitle_estacodi}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_estanomb}"/>
+                        <h:outputText value="#{estaController.selected.estanomb}" title="#{bundle.ViewEstaTitle_estanomb}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_estadire}"/>
+                        <h:outputText value="#{estaController.selected.estadire}" title="#{bundle.ViewEstaTitle_estadire}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_estaarea}"/>
+                        <h:outputText value="#{estaController.selected.estaarea}" title="#{bundle.ViewEstaTitle_estaarea}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_estaobse}"/>
+                        <h:outputText value="#{estaController.selected.estaobse}" title="#{bundle.ViewEstaTitle_estaobse}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_estaesta}"/>
+                        <h:selectBooleanCheckbox id="estaesta" value="#{estaController.selected.estaesta}" title="#{bundle.EditEstaTitle_estaesta}" required="true" requiredMessage="#{bundle.EditEstaRequiredMessage_estaesta}" disabled="true"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_estauing}"/>
+                        <h:outputText value="#{estaController.selected.estauing}" title="#{bundle.ViewEstaTitle_estauing}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_estafing}"/>
+                        <h:outputText value="#{estaController.selected.estafing}" title="#{bundle.ViewEstaTitle_estafing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_estaumod}"/>
+                        <h:outputText value="#{estaController.selected.estaumod}" title="#{bundle.ViewEstaTitle_estaumod}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_estafmod}"/>
+                        <h:outputText value="#{estaController.selected.estafmod}" title="#{bundle.ViewEstaTitle_estafmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_cfgesCollection}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_cuenId}"/>
+                        <h:outputText value="#{estaController.selected.cuenId}" title="#{bundle.ViewEstaTitle_cuenId}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_parrId}"/>
+                        <h:outputText value="#{estaController.selected.parrId}" title="#{bundle.ViewEstaTitle_parrId}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_accesId}"/>
+                        <h:outputText value="#{estaController.selected.accesId}" title="#{bundle.ViewEstaTitle_accesId}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_macesId}"/>
+                        <h:outputText value="#{estaController.selected.macesId}" title="#{bundle.ViewEstaTitle_macesId}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_esteId}"/>
+                        <h:outputText value="#{estaController.selected.esteId}" title="#{bundle.ViewEstaTitle_esteId}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_proesId}"/>
+                        <h:outputText value="#{estaController.selected.proesId}" title="#{bundle.ViewEstaTitle_proesId}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_estaimgn}"/>
+                        <h:outputText value="#{estaController.selected.estaimgn}" title="#{bundle.ViewEstaTitle_estaimgn}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_estaimgs}"/>
+                        <h:outputText value="#{estaController.selected.estaimgs}" title="#{bundle.ViewEstaTitle_estaimgs}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_estaimge}"/>
+                        <h:outputText value="#{estaController.selected.estaimge}" title="#{bundle.ViewEstaTitle_estaimge}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_estaimgo}"/>
+                        <h:outputText value="#{estaController.selected.estaimgo}" title="#{bundle.ViewEstaTitle_estaimgo}"/>
+
+                        <h:outputText value="#{bundle.ViewEstaLabel_cpestaCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EstaViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

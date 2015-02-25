@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MacesEditDlg" widgetVar="MacesEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditMacesTitle}">
+
+            <h:form id="MacesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{macesController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditMacesLabel_macesId}" for="macesId" />
+                        <h:outputText id="macesId" value="#{macesController.selected.macesId}" />
+
+                        <h:outputLabel value="#{bundle.EditMacesLabel_macesdesc}" for="macesdesc" />
+                        <p:inputText id="macesdesc" value="#{macesController.selected.macesdesc}" title="#{bundle.EditMacesTitle_macesdesc}" required="true" requiredMessage="#{bundle.EditMacesRequiredMessage_macesdesc}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{macesController.save}" value="#{bundle.Save}" update="display,:MacesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MacesEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MacesEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

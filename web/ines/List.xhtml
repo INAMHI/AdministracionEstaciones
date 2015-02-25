@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="InesListForm">
+
+        <p:panel header="#{bundle.ListInesTitle}">
+
+            <p:dataTable id="datalist" value="#{inesController.items}" var="item"
+                         selectionMode="single" selection="#{inesController.selected}"
+                         rowKey="#{item.inesId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.inesId}" filterBy="#{item.inesId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListInesTitle_inesId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.inesId}"/>
+                </p:column>
+                <p:column sortBy="#{item.inesnomb}" filterBy="#{item.inesnomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListInesTitle_inesnomb}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.inesnomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.inesdesc}" filterBy="#{item.inesdesc}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListInesTitle_inesdesc}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.inesdesc}"/>
+                </p:column>
+                <p:column sortBy="#{item.inesuing}" filterBy="#{item.inesuing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListInesTitle_inesuing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.inesuing}"/>
+                </p:column>
+                <p:column sortBy="#{item.inesfing}" filterBy="#{item.inesfing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListInesTitle_inesfing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.inesfing}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.inesumod}" filterBy="#{item.inesumod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListInesTitle_inesumod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.inesumod}"/>
+                </p:column>
+                <p:column sortBy="#{item.inesfmod}" filterBy="#{item.inesfmod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListInesTitle_inesfmod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.inesfmod}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{inesController.prepareCreate}" update=":InesCreateForm" oncomplete="InesCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":InesViewForm" oncomplete="InesViewDialog.show()" disabled="#{empty inesController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":InesEditForm" oncomplete="InesEditDialog.show()" disabled="#{empty inesController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{inesController.delete}" update=":growl,datalist" disabled="#{empty inesController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProesViewDlg" widgetVar="ProesViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewProesTitle}">
+
+            <h:form id="ProesViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{proesController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewProesLabel_proesId}"/>
+                        <h:outputText value="#{proesController.selected.proesId}" title="#{bundle.ViewProesTitle_proesId}"/>
+
+                        <h:outputText value="#{bundle.ViewProesLabel_proesnomb}"/>
+                        <h:outputText value="#{proesController.selected.proesnomb}" title="#{bundle.ViewProesTitle_proesnomb}"/>
+
+                        <h:outputText value="#{bundle.ViewProesLabel_proesrep}"/>
+                        <h:outputText value="#{proesController.selected.proesrep}" title="#{bundle.ViewProesTitle_proesrep}"/>
+
+                        <h:outputText value="#{bundle.ViewProesLabel_proesdir}"/>
+                        <h:outputText value="#{proesController.selected.proesdir}" title="#{bundle.ViewProesTitle_proesdir}"/>
+
+                        <h:outputText value="#{bundle.ViewProesLabel_proestlf}"/>
+                        <h:outputText value="#{proesController.selected.proestlf}" title="#{bundle.ViewProesTitle_proestlf}"/>
+
+                        <h:outputText value="#{bundle.ViewProesLabel_proesemai}"/>
+                        <h:outputText value="#{proesController.selected.proesemai}" title="#{bundle.ViewProesTitle_proesemai}"/>
+
+                        <h:outputText value="#{bundle.ViewProesLabel_proesitec}"/>
+                        <h:outputText value="#{proesController.selected.proesitec}" title="#{bundle.ViewProesTitle_proesitec}"/>
+
+                        <h:outputText value="#{bundle.ViewProesLabel_proesunig}"/>
+                        <h:outputText value="#{proesController.selected.proesunig}" title="#{bundle.ViewProesTitle_proesunig}"/>
+
+                        <h:outputText value="#{bundle.ViewProesLabel_proesfing}"/>
+                        <h:outputText value="#{proesController.selected.proesfing}" title="#{bundle.ViewProesTitle_proesfing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewProesLabel_proesumod}"/>
+                        <h:outputText value="#{proesController.selected.proesumod}" title="#{bundle.ViewProesTitle_proesumod}"/>
+
+                        <h:outputText value="#{bundle.ViewProesLabel_proesfmod}"/>
+                        <h:outputText value="#{proesController.selected.proesfmod}" title="#{bundle.ViewProesTitle_proesfmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewProesLabel_estaCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ProesViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

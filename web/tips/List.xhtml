@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TipsListForm">
+
+        <p:panel header="#{bundle.ListTipsTitle}">
+
+            <p:dataTable id="datalist" value="#{tipsController.items}" var="item"
+                         selectionMode="single" selection="#{tipsController.selected}"
+                         rowKey="#{item.tipsId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.tipsId}" filterBy="#{item.tipsId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListTipsTitle_tipsId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipsId}"/>
+                </p:column>
+                <p:column sortBy="#{item.tipscodi}" filterBy="#{item.tipscodi}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListTipsTitle_tipscodi}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipscodi}"/>
+                </p:column>
+                <p:column sortBy="#{item.tipsnomb}" filterBy="#{item.tipsnomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListTipsTitle_tipsnomb}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipsnomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.tipstota}" filterBy="#{item.tipstota}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListTipsTitle_tipstota}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipstota}"/>
+                </p:column>
+                <p:column sortBy="#{item.espedesc}" filterBy="#{item.espedesc}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListTipsTitle_espedesc}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.espedesc}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tipsController.prepareCreate}" update=":TipsCreateForm" oncomplete="TipsCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TipsViewForm" oncomplete="TipsViewDialog.show()" disabled="#{empty tipsController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TipsEditForm" oncomplete="TipsEditDialog.show()" disabled="#{empty tipsController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tipsController.delete}" update=":growl,datalist" disabled="#{empty tipsController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

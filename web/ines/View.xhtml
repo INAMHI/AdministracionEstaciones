@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InesViewDlg" widgetVar="InesViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewInesTitle}">
+
+            <h:form id="InesViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{inesController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewInesLabel_inesId}"/>
+                        <h:outputText value="#{inesController.selected.inesId}" title="#{bundle.ViewInesTitle_inesId}"/>
+
+                        <h:outputText value="#{bundle.ViewInesLabel_inesnomb}"/>
+                        <h:outputText value="#{inesController.selected.inesnomb}" title="#{bundle.ViewInesTitle_inesnomb}"/>
+
+                        <h:outputText value="#{bundle.ViewInesLabel_inesdesc}"/>
+                        <h:outputText value="#{inesController.selected.inesdesc}" title="#{bundle.ViewInesTitle_inesdesc}"/>
+
+                        <h:outputText value="#{bundle.ViewInesLabel_inesuing}"/>
+                        <h:outputText value="#{inesController.selected.inesuing}" title="#{bundle.ViewInesTitle_inesuing}"/>
+
+                        <h:outputText value="#{bundle.ViewInesLabel_inesfing}"/>
+                        <h:outputText value="#{inesController.selected.inesfing}" title="#{bundle.ViewInesTitle_inesfing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewInesLabel_inesumod}"/>
+                        <h:outputText value="#{inesController.selected.inesumod}" title="#{bundle.ViewInesTitle_inesumod}"/>
+
+                        <h:outputText value="#{bundle.ViewInesLabel_inesfmod}"/>
+                        <h:outputText value="#{inesController.selected.inesfmod}" title="#{bundle.ViewInesTitle_inesfmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewInesLabel_inhmCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="InesViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

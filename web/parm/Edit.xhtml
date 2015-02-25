@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ParmEditDlg" widgetVar="ParmEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditParmTitle}">
+
+            <h:form id="ParmEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{parmController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditParmLabel_parmId}" for="parmId" />
+                        <h:outputText id="parmId" value="#{parmController.selected.parmId}" />
+
+                        <h:outputLabel value="#{bundle.EditParmLabel_parmnemo}" for="parmnemo" />
+                        <p:inputText id="parmnemo" value="#{parmController.selected.parmnemo}" title="#{bundle.EditParmTitle_parmnemo}" />
+
+                        <h:outputLabel value="#{bundle.EditParmLabel_parmdesc}" for="parmdesc" />
+                        <p:inputText id="parmdesc" value="#{parmController.selected.parmdesc}" title="#{bundle.EditParmTitle_parmdesc}" />
+
+                        <h:outputLabel value="#{bundle.EditParmLabel_parmuing}" for="parmuing" />
+                        <p:inputText id="parmuing" value="#{parmController.selected.parmuing}" title="#{bundle.EditParmTitle_parmuing}" required="true" requiredMessage="#{bundle.EditParmRequiredMessage_parmuing}"/>
+
+                        <h:outputLabel value="#{bundle.EditParmLabel_parmfing}" for="parmfing" />
+                        <p:calendar id="parmfing" pattern="MM/dd/yyyy HH:mm:ss" value="#{parmController.selected.parmfing}" title="#{bundle.EditParmTitle_parmfing}" required="true" requiredMessage="#{bundle.EditParmRequiredMessage_parmfing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditParmLabel_parmumod}" for="parmumod" />
+                        <p:inputText id="parmumod" value="#{parmController.selected.parmumod}" title="#{bundle.EditParmTitle_parmumod}" />
+
+                        <h:outputLabel value="#{bundle.EditParmLabel_parmfmod}" for="parmfmod" />
+                        <p:calendar id="parmfmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{parmController.selected.parmfmod}" title="#{bundle.EditParmTitle_parmfmod}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{parmController.save}" value="#{bundle.Save}" update="display,:ParmListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ParmEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ParmEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

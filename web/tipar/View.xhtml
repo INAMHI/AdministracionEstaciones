@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TiparViewDlg" widgetVar="TiparViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewTiparTitle}">
+
+            <h:form id="TiparViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tiparController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewTiparLabel_tiparId}"/>
+                        <h:outputText value="#{tiparController.selected.tiparId}" title="#{bundle.ViewTiparTitle_tiparId}"/>
+
+                        <h:outputText value="#{bundle.ViewTiparLabel_tiparmax}"/>
+                        <h:outputText value="#{tiparController.selected.tiparmax}" title="#{bundle.ViewTiparTitle_tiparmax}"/>
+
+                        <h:outputText value="#{bundle.ViewTiparLabel_tiparmin}"/>
+                        <h:outputText value="#{tiparController.selected.tiparmin}" title="#{bundle.ViewTiparTitle_tiparmin}"/>
+
+                        <h:outputText value="#{bundle.ViewTiparLabel_tipoId}"/>
+                        <h:outputText value="#{tiparController.selected.tipoId.tipoId}"/>
+
+                        <h:outputText value="#{bundle.ViewTiparLabel_parmId}"/>
+                        <h:outputText value="#{tiparController.selected.parmId.parmId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TiparViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

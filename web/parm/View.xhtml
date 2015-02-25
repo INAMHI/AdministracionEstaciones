@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ParmViewDlg" widgetVar="ParmViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewParmTitle}">
+
+            <h:form id="ParmViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{parmController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewParmLabel_parmId}"/>
+                        <h:outputText value="#{parmController.selected.parmId}" title="#{bundle.ViewParmTitle_parmId}"/>
+
+                        <h:outputText value="#{bundle.ViewParmLabel_parmnemo}"/>
+                        <h:outputText value="#{parmController.selected.parmnemo}" title="#{bundle.ViewParmTitle_parmnemo}"/>
+
+                        <h:outputText value="#{bundle.ViewParmLabel_parmdesc}"/>
+                        <h:outputText value="#{parmController.selected.parmdesc}" title="#{bundle.ViewParmTitle_parmdesc}"/>
+
+                        <h:outputText value="#{bundle.ViewParmLabel_parmuing}"/>
+                        <h:outputText value="#{parmController.selected.parmuing}" title="#{bundle.ViewParmTitle_parmuing}"/>
+
+                        <h:outputText value="#{bundle.ViewParmLabel_parmfing}"/>
+                        <h:outputText value="#{parmController.selected.parmfing}" title="#{bundle.ViewParmTitle_parmfing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewParmLabel_parmumod}"/>
+                        <h:outputText value="#{parmController.selected.parmumod}" title="#{bundle.ViewParmTitle_parmumod}"/>
+
+                        <h:outputText value="#{bundle.ViewParmLabel_parmfmod}"/>
+                        <h:outputText value="#{parmController.selected.parmfmod}" title="#{bundle.ViewParmTitle_parmfmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewParmLabel_tiparCollection}"/>
+
+                        <h:outputText value="#{bundle.ViewParmLabel_copaCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ParmViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

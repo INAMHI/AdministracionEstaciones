@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EscatViewDlg" widgetVar="EscatViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewEscatTitle}">
+
+            <h:form id="EscatViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{escatController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewEscatLabel_escatId}"/>
+                        <h:outputText value="#{escatController.selected.escatId}" title="#{bundle.ViewEscatTitle_escatId}"/>
+
+                        <h:outputText value="#{bundle.ViewEscatLabel_escatfins}"/>
+                        <h:outputText value="#{escatController.selected.escatfins}" title="#{bundle.ViewEscatTitle_escatfins}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewEscatLabel_escatflev}"/>
+                        <h:outputText value="#{escatController.selected.escatflev}" title="#{bundle.ViewEscatTitle_escatflev}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewEscatLabel_escatadre}"/>
+                        <h:outputText value="#{escatController.selected.escatadre}" title="#{bundle.ViewEscatTitle_escatadre}"/>
+
+                        <h:outputText value="#{bundle.ViewEscatLabel_escatuing}"/>
+                        <h:outputText value="#{escatController.selected.escatuing}" title="#{bundle.ViewEscatTitle_escatuing}"/>
+
+                        <h:outputText value="#{bundle.ViewEscatLabel_escatfing}"/>
+                        <h:outputText value="#{escatController.selected.escatfing}" title="#{bundle.ViewEscatTitle_escatfing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewEscatLabel_escatumod}"/>
+                        <h:outputText value="#{escatController.selected.escatumod}" title="#{bundle.ViewEscatTitle_escatumod}"/>
+
+                        <h:outputText value="#{bundle.ViewEscatLabel_escatfmod}"/>
+                        <h:outputText value="#{escatController.selected.escatfmod}" title="#{bundle.ViewEscatTitle_escatfmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewEscatLabel_estaId}"/>
+                        <h:outputText value="#{escatController.selected.estaId.estaId}"/>
+
+                        <h:outputText value="#{bundle.ViewEscatLabel_catiId}"/>
+                        <h:outputText value="#{escatController.selected.catiId.catiId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EscatViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

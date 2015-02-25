@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipsCreateDlg" widgetVar="TipsCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateTipsTitle}">
+
+            <h:form id="TipsCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipsController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.CreateTipsLabel_tipscodi}" for="tipscodi" />
+                        <p:inputText id="tipscodi" value="#{tipsController.selected.tipscodi}" title="#{bundle.CreateTipsTitle_tipscodi}" />
+
+                        <h:outputLabel value="#{bundle.CreateTipsLabel_tipsnomb}" for="tipsnomb" />
+                        <p:inputText id="tipsnomb" value="#{tipsController.selected.tipsnomb}" title="#{bundle.CreateTipsTitle_tipsnomb}" />
+
+                        <h:outputLabel value="#{bundle.CreateTipsLabel_tipstota}" for="tipstota" />
+                        <p:inputText id="tipstota" value="#{tipsController.selected.tipstota}" title="#{bundle.CreateTipsTitle_tipstota}" />
+
+                        <h:outputLabel value="#{bundle.CreateTipsLabel_espedesc}" for="espedesc" />
+                        <p:inputText id="espedesc" value="#{tipsController.selected.espedesc}" title="#{bundle.CreateTipsTitle_espedesc}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tipsController.saveNew}" value="#{bundle.Save}" update="display,:TipsListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,TipsCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TipsCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

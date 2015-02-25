@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CateCreateDlg" widgetVar="CateCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateCateTitle}">
+
+            <h:form id="CateCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cateController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.CreateCateLabel_catenomb}" for="catenomb" />
+                        <p:inputText id="catenomb" value="#{cateController.selected.catenomb}" title="#{bundle.CreateCateTitle_catenomb}" required="true" requiredMessage="#{bundle.CreateCateRequiredMessage_catenomb}"/>
+
+                        <h:outputLabel value="#{bundle.CreateCateLabel_catedesc}" for="catedesc" />
+                        <p:inputText id="catedesc" value="#{cateController.selected.catedesc}" title="#{bundle.CreateCateTitle_catedesc}" />
+
+                        <h:outputLabel value="#{bundle.CreateCateLabel_cateuing}" for="cateuing" />
+                        <p:inputText id="cateuing" value="#{cateController.selected.cateuing}" title="#{bundle.CreateCateTitle_cateuing}" required="true" requiredMessage="#{bundle.CreateCateRequiredMessage_cateuing}"/>
+
+                        <h:outputLabel value="#{bundle.CreateCateLabel_catefing}" for="catefing" />
+                        <p:calendar id="catefing" pattern="MM/dd/yyyy HH:mm:ss" value="#{cateController.selected.catefing}" title="#{bundle.EditCateTitle_catefing}" required="true" requiredMessage="#{bundle.EditCateRequiredMessage_catefing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.CreateCateLabel_cateumod}" for="cateumod" />
+                        <p:inputText id="cateumod" value="#{cateController.selected.cateumod}" title="#{bundle.CreateCateTitle_cateumod}" />
+
+                        <h:outputLabel value="#{bundle.CreateCateLabel_catefmod}" for="catefmod" />
+                        <p:calendar id="catefmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{cateController.selected.catefmod}" title="#{bundle.EditCateTitle_catefmod}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cateController.saveNew}" value="#{bundle.Save}" update="display,:CateListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CateCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CateCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

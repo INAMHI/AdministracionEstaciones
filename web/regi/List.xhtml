@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="RegiListForm">
+
+        <p:panel header="#{bundle.ListRegiTitle}">
+
+            <p:dataTable id="datalist" value="#{regiController.items}" var="item"
+                         selectionMode="single" selection="#{regiController.selected}"
+                         rowKey="#{item.regiId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.regiId}" filterBy="#{item.regiId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListRegiTitle_regiId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.regiId}"/>
+                </p:column>
+                <p:column sortBy="#{item.reginomb}" filterBy="#{item.reginomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListRegiTitle_reginomb}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.reginomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.regiesta}" filterBy="#{item.regiesta}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListRegiTitle_regiesta}"/>
+                    </f:facet>
+                    <h:selectBooleanCheckbox id="regiesta" value="#{item.regiesta}" title="#{bundle.EditRegiTitle_regiesta}" required="true" requiredMessage="#{bundle.EditRegiRequiredMessage_regiesta}" disabled="true"/>
+                </p:column>
+                <p:column sortBy="#{item.regiuing}" filterBy="#{item.regiuing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListRegiTitle_regiuing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.regiuing}"/>
+                </p:column>
+                <p:column sortBy="#{item.regifing}" filterBy="#{item.regifing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListRegiTitle_regifing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.regifing}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.regiumod}" filterBy="#{item.regiumod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListRegiTitle_regiumod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.regiumod}"/>
+                </p:column>
+                <p:column sortBy="#{item.regifmod}" filterBy="#{item.regifmod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListRegiTitle_regifmod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.regifmod}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{regiController.prepareCreate}" update=":RegiCreateForm" oncomplete="RegiCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":RegiViewForm" oncomplete="RegiViewDialog.show()" disabled="#{empty regiController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":RegiEditForm" oncomplete="RegiEditDialog.show()" disabled="#{empty regiController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{regiController.delete}" update=":growl,datalist" disabled="#{empty regiController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

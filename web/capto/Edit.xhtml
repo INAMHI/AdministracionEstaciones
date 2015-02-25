@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CaptoEditDlg" widgetVar="CaptoEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditCaptoTitle}">
+
+            <h:form id="CaptoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{captoController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditCaptoLabel_captoId}" for="captoId" />
+                        <h:outputText id="captoId" value="#{captoController.selected.captoId}" />
+
+                        <h:outputLabel value="#{bundle.EditCaptoLabel_captonomb}" for="captonomb" />
+                        <p:inputText id="captonomb" value="#{captoController.selected.captonomb}" title="#{bundle.EditCaptoTitle_captonomb}" />
+
+                        <h:outputLabel value="#{bundle.EditCaptoLabel_captodesc}" for="captodesc" />
+                        <p:inputText id="captodesc" value="#{captoController.selected.captodesc}" title="#{bundle.EditCaptoTitle_captodesc}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{captoController.save}" value="#{bundle.Save}" update="display,:CaptoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CaptoEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CaptoEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

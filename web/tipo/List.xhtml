@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TipoListForm">
+
+        <p:panel header="#{bundle.ListTipoTitle}">
+
+            <p:dataTable id="datalist" value="#{tipoController.items}" var="item"
+                         selectionMode="single" selection="#{tipoController.selected}"
+                         rowKey="#{item.tipoId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.tipoId}" filterBy="#{item.tipoId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListTipoTitle_tipoId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipoId}"/>
+                </p:column>
+                <p:column sortBy="#{item.cateId.cateId}" filterBy="#{item.cateId.cateId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListTipoTitle_cateId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cateId.catenomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.tiponomb}" filterBy="#{item.tiponomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListTipoTitle_tiponomb}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tiponomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.tipocodi}" filterBy="#{item.tipocodi}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListTipoTitle_tipocodi}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipocodi}"/>
+                </p:column>
+                <p:column sortBy="#{item.tipoobse}" filterBy="#{item.tipoobse}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListTipoTitle_tipoobse}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipoobse}"/>
+                </p:column>
+                <p:column sortBy="#{item.tipoesta}" filterBy="#{item.tipoesta}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListTipoTitle_tipoesta}"/>
+                    </f:facet>
+                    <h:selectBooleanCheckbox id="tipoesta" value="#{item.tipoesta}" title="#{bundle.EditTipoTitle_tipoesta}" required="true" requiredMessage="#{bundle.EditTipoRequiredMessage_tipoesta}" disabled="true"/>
+                </p:column>
+                <p:column sortBy="#{item.tipouing}" filterBy="#{item.tipouing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListTipoTitle_tipouing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipouing}"/>
+                </p:column>
+                <p:column sortBy="#{item.tipofing}" filterBy="#{item.tipofing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListTipoTitle_tipofing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipofing}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.tipoumod}" filterBy="#{item.tipoumod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListTipoTitle_tipoumod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipoumod}"/>
+                </p:column>
+                <p:column sortBy="#{item.tipofmod}" filterBy="#{item.tipofmod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListTipoTitle_tipofmod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipofmod}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tipoController.prepareCreate}" update=":TipoCreateForm" oncomplete="TipoCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TipoViewForm" oncomplete="TipoViewDialog.show()" disabled="#{empty tipoController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TipoEditForm" oncomplete="TipoEditDialog.show()" disabled="#{empty tipoController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tipoController.delete}" update=":growl,datalist" disabled="#{empty tipoController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

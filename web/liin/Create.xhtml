@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LiinCreateDlg" widgetVar="LiinCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateLiinTitle}">
+
+            <h:form id="LiinCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{liinController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.CreateLiinLabel_liinnomb}" for="liinnomb" />
+                        <p:inputText id="liinnomb" value="#{liinController.selected.liinnomb}" title="#{bundle.CreateLiinTitle_liinnomb}" required="true" requiredMessage="#{bundle.CreateLiinRequiredMessage_liinnomb}"/>
+
+                        <h:outputLabel value="#{bundle.CreateLiinLabel_liindesc}" for="liindesc" />
+                        <p:inputText id="liindesc" value="#{liinController.selected.liindesc}" title="#{bundle.CreateLiinTitle_liindesc}" />
+
+                        <h:outputLabel value="#{bundle.CreateLiinLabel_liinuing}" for="liinuing" />
+                        <p:inputText id="liinuing" value="#{liinController.selected.liinuing}" title="#{bundle.CreateLiinTitle_liinuing}" required="true" requiredMessage="#{bundle.CreateLiinRequiredMessage_liinuing}"/>
+
+                        <h:outputLabel value="#{bundle.CreateLiinLabel_liinfing}" for="liinfing" />
+                        <p:calendar id="liinfing" pattern="MM/dd/yyyy HH:mm:ss" value="#{liinController.selected.liinfing}" title="#{bundle.EditLiinTitle_liinfing}" required="true" requiredMessage="#{bundle.EditLiinRequiredMessage_liinfing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.CreateLiinLabel_liinumod}" for="liinumod" />
+                        <p:inputText id="liinumod" value="#{liinController.selected.liinumod}" title="#{bundle.CreateLiinTitle_liinumod}" />
+
+                        <h:outputLabel value="#{bundle.CreateLiinLabel_liinfmod}" for="liinfmod" />
+                        <p:calendar id="liinfmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{liinController.selected.liinfmod}" title="#{bundle.EditLiinTitle_liinfmod}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{liinController.saveNew}" value="#{bundle.Save}" update="display,:LiinListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,LiinCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LiinCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

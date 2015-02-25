@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MarcViewDlg" widgetVar="MarcViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewMarcTitle}">
+
+            <h:form id="MarcViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{marcController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewMarcLabel_marcId}"/>
+                        <h:outputText value="#{marcController.selected.marcId}" title="#{bundle.ViewMarcTitle_marcId}"/>
+
+                        <h:outputText value="#{bundle.ViewMarcLabel_marcnomb}"/>
+                        <h:outputText value="#{marcController.selected.marcnomb}" title="#{bundle.ViewMarcTitle_marcnomb}"/>
+
+                        <h:outputText value="#{bundle.ViewMarcLabel_marcdesc}"/>
+                        <h:outputText value="#{marcController.selected.marcdesc}" title="#{bundle.ViewMarcTitle_marcdesc}"/>
+
+                        <h:outputText value="#{bundle.ViewMarcLabel_marcfecr}"/>
+                        <h:outputText value="#{marcController.selected.marcfecr}" title="#{bundle.ViewMarcTitle_marcfecr}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewMarcLabel_marcesta}"/>
+                        <h:outputText value="#{marcController.selected.marcesta}" title="#{bundle.ViewMarcTitle_marcesta}"/>
+
+                        <h:outputText value="#{bundle.ViewMarcLabel_marccaes}"/>
+                        <h:outputText value="#{marcController.selected.marccaes}" title="#{bundle.ViewMarcTitle_marccaes}"/>
+
+                        <h:outputText value="#{bundle.ViewMarcLabel_marcuing}"/>
+                        <h:outputText value="#{marcController.selected.marcuing}" title="#{bundle.ViewMarcTitle_marcuing}"/>
+
+                        <h:outputText value="#{bundle.ViewMarcLabel_marcfing}"/>
+                        <h:outputText value="#{marcController.selected.marcfing}" title="#{bundle.ViewMarcTitle_marcfing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewMarcLabel_marcumod}"/>
+                        <h:outputText value="#{marcController.selected.marcumod}" title="#{bundle.ViewMarcTitle_marcumod}"/>
+
+                        <h:outputText value="#{bundle.ViewMarcLabel_marcfmod}"/>
+                        <h:outputText value="#{marcController.selected.marcfmod}" title="#{bundle.ViewMarcTitle_marcfmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewMarcLabel_inhmCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MarcViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

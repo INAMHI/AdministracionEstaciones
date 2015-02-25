@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InteViewDlg" widgetVar="InteViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewInteTitle}">
+
+            <h:form id="InteViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{inteController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewInteLabel_inteId}"/>
+                        <h:outputText value="#{inteController.selected.inteId}" title="#{bundle.ViewInteTitle_inteId}"/>
+
+                        <h:outputText value="#{bundle.ViewInteLabel_intetiemp}"/>
+                        <h:outputText value="#{inteController.selected.intetiemp}" title="#{bundle.ViewInteTitle_intetiemp}"/>
+
+                        <h:outputText value="#{bundle.ViewInteLabel_inteuing}"/>
+                        <h:outputText value="#{inteController.selected.inteuing}" title="#{bundle.ViewInteTitle_inteuing}"/>
+
+                        <h:outputText value="#{bundle.ViewInteLabel_intefing}"/>
+                        <h:outputText value="#{inteController.selected.intefing}" title="#{bundle.ViewInteTitle_intefing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewInteLabel_inteumod}"/>
+                        <h:outputText value="#{inteController.selected.inteumod}" title="#{bundle.ViewInteTitle_inteumod}"/>
+
+                        <h:outputText value="#{bundle.ViewInteLabel_intefmod}"/>
+                        <h:outputText value="#{inteController.selected.intefmod}" title="#{bundle.ViewInteTitle_intefmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewInteLabel_inutCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="InteViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

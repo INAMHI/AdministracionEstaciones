@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InhmViewDlg" widgetVar="InhmViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewInhmTitle}">
+
+            <h:form id="InhmViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{inhmController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_inhmId}"/>
+                        <h:outputText value="#{inhmController.selected.inhmId}" title="#{bundle.ViewInhmTitle_inhmId}"/>
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_liinId}"/>
+                        <h:outputText value="#{inhmController.selected.liinId.liinnomb}"/>
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_tipsId}"/>
+                        <h:outputText value="#{inhmController.selected.tipsId.tipsnomb}"/>
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_inhmnomb}"/>
+                        <h:outputText value="#{inhmController.selected.inhmnomb}" title="#{bundle.ViewInhmTitle_inhmnomb}"/>
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_marcId}"/>
+                        <h:outputText value="#{inhmController.selected.marcId.marcnomb}"/>
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_inhmmode}"/>
+                        <h:outputText value="#{inhmController.selected.inhmmode}" title="#{bundle.ViewInhmTitle_inhmmode}"/>
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_inhmseri}"/>
+                        <h:outputText value="#{inhmController.selected.inhmseri}" title="#{bundle.ViewInhmTitle_inhmseri}"/>
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_inhmaseg}"/>
+                        <h:outputText value="#{inhmController.selected.inhmaseg}" title="#{bundle.ViewInhmTitle_inhmaseg}"/>
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_inhmimag}"/>
+                        <h:outputText value="#{inhmController.selected.inhmimag}" title="#{bundle.ViewInhmTitle_inhmimag}"/>
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_inhmesta}"/>
+                        <h:outputText value="#{inhmController.selected.inhmesta}" title="#{bundle.ViewInhmTitle_inhmesta}"/>
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_inhmobse}"/>
+                        <h:outputText value="#{inhmController.selected.inhmobse}" title="#{bundle.ViewInhmTitle_inhmobse}"/>
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_inesId}"/>
+                        <h:outputText value="#{inhmController.selected.inesId.inesId}"/>
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_inhmcoda}"/>
+                        <h:outputText value="#{inhmController.selected.inhmcoda}" title="#{bundle.ViewInhmTitle_inhmcoda}"/>
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_inhmcoba}"/>
+                        <h:outputText value="#{inhmController.selected.inhmcoba}" title="#{bundle.ViewInhmTitle_inhmcoba}"/>
+
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_inhmuing}"/>
+                        <h:outputText value="#{inhmController.selected.inhmuing}" title="#{bundle.ViewInhmTitle_inhmuing}"/>
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_inhmfing}"/>
+                        <h:outputText value="#{inhmController.selected.inhmfing}" title="#{bundle.ViewInhmTitle_inhmfing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_inhmumod}"/>
+                        <h:outputText value="#{inhmController.selected.inhmumod}" title="#{bundle.ViewInhmTitle_inhmumod}"/>
+
+                        <h:outputText value="#{bundle.ViewInhmLabel_inhmfmod}"/>
+                        <h:outputText value="#{inhmController.selected.inhmfmod}" title="#{bundle.ViewInhmTitle_inhmfmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="InhmViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

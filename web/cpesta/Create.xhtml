@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CpestaCreateDlg" widgetVar="CpestaCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateCpestaTitle}">
+
+            <h:form id="CpestaCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cpestaController.inputCpesta != null}">
+
+                        <h:outputLabel value="#{bundle.CreateCpestaLabel_cpestadesc}" for="cpestadesc" />
+                        <p:inputText id="cpestadesc" value="#{cpestaController.inputCpesta.cpestadesc}" title="#{bundle.CreateCpestaTitle_cpestadesc}" />
+
+                        <h:outputLabel value="#{bundle.CreateCpestaLabel_estaId}" for="estaId" />
+                        <p:selectOneMenu id="estaId" value="#{cpestaController.inputCpesta.estaId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estaController.items}"
+                                           var="estaIdItem"
+                                           itemValue="#{estaIdItem}"
+                                           itemLabel="#{estaIdItem.estacodi} - #{estaIdItem.estanomb}"
+                                           />
+                            <f:converter binding="#{estaConverter}"/>
+                            <p:ajax event = "change"   listener="#{cpestaController.selectListener}" update="pickList"  />
+                        </p:selectOneMenu>  
+                    </p:panelGrid>
+                    <p:pickList id="pickList" value="#{copaController.copas}" var="copasIdItem" itemLabel="#{copasIdItem.parmId.parmdesc} - #{copasIdItem.umepId.umepsimb} - #{copasIdItem.estdId.estddesc} - #{copasIdItem.inutId.inteId.intetiemp} - #{copasIdItem.inutId.umetId.umetnomb}" itemValue="#{copasIdItem}" showTargetControls="true" >
+                        <f:converter binding="#{copaConverter}"/>
+                    </p:pickList>
+                    <p:commandButton actionListener="#{cpestaController.guardarCpesta()}" value="#{bundle.Save}" update="display,:CpestaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CpestaCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CpestaCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

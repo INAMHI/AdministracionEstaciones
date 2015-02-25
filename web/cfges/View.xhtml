@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CfgesViewDlg" widgetVar="CfgesViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewCfgesTitle}">
+
+            <h:form id="CfgesViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cfgesController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewCfgesLabel_cfgesId}"/>
+                        <h:outputText value="#{cfgesController.selected.cfgesId}" title="#{bundle.ViewCfgesTitle_cfgesId}"/>
+
+                        <h:outputText value="#{bundle.ViewCfgesLabel_estaId}"/>
+                        <h:outputText value="#{cfgesController.selected.estaId.estacodi} - #{cfgesController.selected.estaId.estanomb}"/>
+
+                        <h:outputText value="#{bundle.ViewCfgesLabel_cfgesordd}"/>
+                        <h:outputText value="#{cfgesController.selected.cfgesordd}" title="#{bundle.ViewCfgesTitle_cfgesordd}"/>
+
+                        <h:outputText value="#{bundle.ViewCfgesLabel_dtlgId}"/>
+                        <h:outputText value="#{cfgesController.selected.dtlgId.inhmId.inhmnomb} - #{cfgesController.selected.dtlgId.inhmId.marcId.marcnomb} - #{cfgesController.selected.dtlgId.inhmId.inhmmode} - #{cfgesController.selected.dtlgId.inhmId.inhmseri}"/>
+
+                        <h:outputText value="#{bundle.ViewCfgesLabel_sensId}"/>
+                        <h:outputText value="#{cfgesController.selected.sensId.inhmId.inhmnomb} - #{cfgesController.selected.sensId.inhmId.marcId.marcnomb} - #{cfgesController.selected.sensId.inhmId.inhmmode} - #{cfgesController.selected.sensId.inhmId.inhmseri}"/>
+
+
+                        <h:outputText value="#{bundle.ViewCfgesLabel_cfgesalt}"/>
+                        <h:outputText value="#{cfgesController.selected.cfgesalt}" title="#{bundle.ViewCfgesTitle_cfgesalt}"/>
+
+                        <h:outputText value="#{bundle.ViewCfgesLabel_cfgesords}"/>
+                        <h:outputText value="#{cfgesController.selected.cfgesords}" title="#{bundle.ViewCfgesTitle_cfgesords}"/>
+
+
+
+                        <h:outputText value="#{bundle.ViewCfgesLabel_cfgesfinm}"/>
+                        <h:outputText value="#{cfgesController.selected.cfgesfinm}" title="#{bundle.ViewCfgesTitle_cfgesfinm}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewCfgesLabel_cfgesffnm}"/>
+                        <h:outputText value="#{cfgesController.selected.cfgesffnm}" title="#{bundle.ViewCfgesTitle_cfgesffnm}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewCfgesLabel_cfgesdesc}"/>
+                        <h:outputText value="#{cfgesController.selected.cfgesdesc}" title="#{bundle.ViewCfgesTitle_cfgesdesc}"/>
+
+                        <h:outputText value="#{bundle.ViewCfgesLabel_cfgesuing}"/>
+                        <h:outputText value="#{cfgesController.selected.cfgesuing}" title="#{bundle.ViewCfgesTitle_cfgesuing}"/>
+
+                        <h:outputText value="#{bundle.ViewCfgesLabel_cfgesfing}"/>
+                        <h:outputText value="#{cfgesController.selected.cfgesfing}" title="#{bundle.ViewCfgesTitle_cfgesfing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewCfgesLabel_cfgesumod}"/>
+                        <h:outputText value="#{cfgesController.selected.cfgesumod}" title="#{bundle.ViewCfgesTitle_cfgesumod}"/>
+
+                        <h:outputText value="#{bundle.ViewCfgesLabel_cfgesfmod}"/>
+                        <h:outputText value="#{cfgesController.selected.cfgesfmod}" title="#{bundle.ViewCfgesTitle_cfgesfmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CfgesViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

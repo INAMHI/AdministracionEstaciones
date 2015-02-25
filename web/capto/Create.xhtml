@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CaptoCreateDlg" widgetVar="CaptoCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateCaptoTitle}">
+
+            <h:form id="CaptoCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{captoController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.CreateCaptoLabel_captonomb}" for="captonomb" />
+                        <p:inputText id="captonomb" value="#{captoController.selected.captonomb}" title="#{bundle.CreateCaptoTitle_captonomb}" />
+
+                        <h:outputLabel value="#{bundle.CreateCaptoLabel_captodesc}" for="captodesc" />
+                        <p:inputText id="captodesc" value="#{captoController.selected.captodesc}" title="#{bundle.CreateCaptoTitle_captodesc}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{captoController.saveNew}" value="#{bundle.Save}" update="display,:CaptoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CaptoCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CaptoCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

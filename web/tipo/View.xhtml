@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoViewDlg" widgetVar="TipoViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewTipoTitle}">
+
+            <h:form id="TipoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipoController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewTipoLabel_tipoId}"/>
+                        <h:outputText value="#{tipoController.selected.tipoId}" title="#{bundle.ViewTipoTitle_tipoId}"/>
+
+                        <h:outputText value="#{bundle.ViewTipoLabel_cateId}"/>
+                        <h:outputText value="#{tipoController.selected.cateId.catenomb}"/>
+
+                        <h:outputText value="#{bundle.ViewTipoLabel_tiponomb}"/>
+                        <h:outputText value="#{tipoController.selected.tiponomb}" title="#{bundle.ViewTipoTitle_tiponomb}"/>
+
+                        <h:outputText value="#{bundle.ViewTipoLabel_tipocodi}"/>
+                        <h:outputText value="#{tipoController.selected.tipocodi}" title="#{bundle.ViewTipoTitle_tipocodi}"/>
+
+                        <h:outputText value="#{bundle.ViewTipoLabel_tipoobse}"/>
+                        <h:outputText value="#{tipoController.selected.tipoobse}" title="#{bundle.ViewTipoTitle_tipoobse}"/>
+
+                        <h:outputText value="#{bundle.ViewTipoLabel_tipoesta}"/>
+                        <h:selectBooleanCheckbox id="tipoesta" value="#{tipoController.selected.tipoesta}" title="#{bundle.EditTipoTitle_tipoesta}" required="true" requiredMessage="#{bundle.EditTipoRequiredMessage_tipoesta}" disabled="true"/>
+
+                        <h:outputText value="#{bundle.ViewTipoLabel_tipouing}"/>
+                        <h:outputText value="#{tipoController.selected.tipouing}" title="#{bundle.ViewTipoTitle_tipouing}"/>
+
+                        <h:outputText value="#{bundle.ViewTipoLabel_tipofing}"/>
+                        <h:outputText value="#{tipoController.selected.tipofing}" title="#{bundle.ViewTipoTitle_tipofing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewTipoLabel_tipoumod}"/>
+                        <h:outputText value="#{tipoController.selected.tipoumod}" title="#{bundle.ViewTipoTitle_tipoumod}"/>
+
+                        <h:outputText value="#{bundle.ViewTipoLabel_tipofmod}"/>
+                        <h:outputText value="#{tipoController.selected.tipofmod}" title="#{bundle.ViewTipoTitle_tipofmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TipoViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

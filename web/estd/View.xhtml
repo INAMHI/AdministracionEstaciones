@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EstdViewDlg" widgetVar="EstdViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewEstdTitle}">
+
+            <h:form id="EstdViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{estdController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewEstdLabel_estdId}"/>
+                        <h:outputText value="#{estdController.selected.estdId}" title="#{bundle.ViewEstdTitle_estdId}"/>
+
+                        <h:outputText value="#{bundle.ViewEstdLabel_estdcomp}"/>
+                        <h:outputText value="#{estdController.selected.estdcomp}" title="#{bundle.ViewEstdTitle_estdcomp}"/>
+
+                        <h:outputText value="#{bundle.ViewEstdLabel_estdsimb}"/>
+                        <h:outputText value="#{estdController.selected.estdsimb}" title="#{bundle.ViewEstdTitle_estdsimb}"/>
+
+                        <h:outputText value="#{bundle.ViewEstdLabel_estddesc}"/>
+                        <h:outputText value="#{estdController.selected.estddesc}" title="#{bundle.ViewEstdTitle_estddesc}"/>
+
+                        <h:outputText value="#{bundle.ViewEstdLabel_estduing}"/>
+                        <h:outputText value="#{estdController.selected.estduing}" title="#{bundle.ViewEstdTitle_estduing}"/>
+
+                        <h:outputText value="#{bundle.ViewEstdLabel_estdfing}"/>
+                        <h:outputText value="#{estdController.selected.estdfing}" title="#{bundle.ViewEstdTitle_estdfing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewEstdLabel_estdumod}"/>
+                        <h:outputText value="#{estdController.selected.estdumod}" title="#{bundle.ViewEstdTitle_estdumod}"/>
+
+                        <h:outputText value="#{bundle.ViewEstdLabel_estdfmod}"/>
+                        <h:outputText value="#{estdController.selected.estdfmod}" title="#{bundle.ViewEstdTitle_estdfmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewEstdLabel_copaCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EstdViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

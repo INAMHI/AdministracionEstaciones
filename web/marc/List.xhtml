@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="MarcListForm">
+
+        <p:panel header="#{bundle.ListMarcTitle}">
+
+            <p:dataTable id="datalist" value="#{marcController.items}" var="item"
+                         selectionMode="single" selection="#{marcController.selected}"
+                         rowKey="#{item.marcId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.marcId}" filterBy="#{item.marcId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMarcTitle_marcId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.marcId}"/>
+                </p:column>
+                <p:column sortBy="#{item.marcnomb}" filterBy="#{item.marcnomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMarcTitle_marcnomb}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.marcnomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.marcdesc}" filterBy="#{item.marcdesc}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMarcTitle_marcdesc}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.marcdesc}"/>
+                </p:column>
+                <p:column sortBy="#{item.marcfecr}" filterBy="#{item.marcfecr}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMarcTitle_marcfecr}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.marcfecr}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.marcesta}" filterBy="#{item.marcesta}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMarcTitle_marcesta}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.marcesta}"/>
+                </p:column>
+                <p:column sortBy="#{item.marccaes}" filterBy="#{item.marccaes}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMarcTitle_marccaes}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.marccaes}"/>
+                </p:column>
+                <p:column sortBy="#{item.marcuing}" filterBy="#{item.marcuing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMarcTitle_marcuing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.marcuing}"/>
+                </p:column>
+                <p:column sortBy="#{item.marcfing}" filterBy="#{item.marcfing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMarcTitle_marcfing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.marcfing}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.marcumod}" filterBy="#{item.marcumod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMarcTitle_marcumod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.marcumod}"/>
+                </p:column>
+                <p:column sortBy="#{item.marcfmod}" filterBy="#{item.marcfmod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMarcTitle_marcfmod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.marcfmod}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{marcController.prepareCreate}" update=":MarcCreateForm" oncomplete="MarcCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MarcViewForm" oncomplete="MarcViewDialog.show()" disabled="#{empty marcController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MarcEditForm" oncomplete="MarcEditDialog.show()" disabled="#{empty marcController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{marcController.delete}" update=":growl,datalist" disabled="#{empty marcController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

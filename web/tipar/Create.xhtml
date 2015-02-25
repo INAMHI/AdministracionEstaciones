@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TiparCreateDlg" widgetVar="TiparCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateTiparTitle}">
+
+            <h:form id="TiparCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tiparController.inputTipar != null}">
+
+                        <h:outputLabel value="#{bundle.CreateTiparLabel_tipoId}" for="tipoId" />
+                        <p:selectOneMenu id="tipoId" value="#{tiparController.inputTipar.tipoId}" required="true" requiredMessage="#{bundle.EditTiparRequiredMessage_tipoId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoController.items}"
+                                           var="tipoIdItem"
+                                           itemValue="#{tipoIdItem}"
+                                           itemLabel="#{tipoIdItem.tiponomb} - #{tipoIdItem.cateId.catenomb}"
+                                           />
+                            <f:converter binding="#{tipoConverter}"/>
+                            <p:ajax event = "change"   listener="#{tiparController.selectListener}" update="pickList"  />
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+
+                    <p:pickList id="pickList" value="#{parmController.parametros}" var="parmIdItem" itemLabel="#{parmIdItem.parmdesc}" itemValue="#{parmIdItem}" showTargetControls="true" >
+                        <f:converter binding="#{parmConverter}"/>
+                    </p:pickList>
+                    <p:commandButton actionListener="#{tiparController.guardarTipar()}" value="#{bundle.Save}" update="display,:TiparListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,TiparCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TiparCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProesEditDlg" widgetVar="ProesEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditProesTitle}">
+
+            <h:form id="ProesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{proesController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditProesLabel_proesId}" for="proesId" />
+                        <h:outputText id="proesId" value="#{proesController.selected.proesId}" />
+
+                        <h:outputLabel value="#{bundle.EditProesLabel_proesnomb}" for="proesnomb" />
+                        <p:inputText id="proesnomb" value="#{proesController.selected.proesnomb}" title="#{bundle.EditProesTitle_proesnomb}" required="true" requiredMessage="#{bundle.EditProesRequiredMessage_proesnomb}"/>
+
+                        <h:outputLabel value="#{bundle.EditProesLabel_proesrep}" for="proesrep" />
+                        <p:inputText id="proesrep" value="#{proesController.selected.proesrep}" title="#{bundle.EditProesTitle_proesrep}" />
+
+                        <h:outputLabel value="#{bundle.EditProesLabel_proesdir}" for="proesdir" />
+                        <p:inputText id="proesdir" value="#{proesController.selected.proesdir}" title="#{bundle.EditProesTitle_proesdir}" />
+
+                        <h:outputLabel value="#{bundle.EditProesLabel_proestlf}" for="proestlf" />
+                        <p:inputText id="proestlf" value="#{proesController.selected.proestlf}" title="#{bundle.EditProesTitle_proestlf}" />
+
+                        <h:outputLabel value="#{bundle.EditProesLabel_proesemai}" for="proesemai" />
+                        <p:inputText id="proesemai" value="#{proesController.selected.proesemai}" title="#{bundle.EditProesTitle_proesemai}" />
+
+                        <h:outputLabel value="#{bundle.EditProesLabel_proesitec}" for="proesitec" />
+                        <p:inputText id="proesitec" value="#{proesController.selected.proesitec}" title="#{bundle.EditProesTitle_proesitec}" />
+
+                        <h:outputLabel value="#{bundle.EditProesLabel_proesunig}" for="proesunig" />
+                        <p:inputText id="proesunig" value="#{proesController.selected.proesunig}" title="#{bundle.EditProesTitle_proesunig}" required="true" requiredMessage="#{bundle.EditProesRequiredMessage_proesunig}"/>
+
+                        <h:outputLabel value="#{bundle.EditProesLabel_proesfing}" for="proesfing" />
+                        <p:calendar id="proesfing" pattern="MM/dd/yyyy HH:mm:ss" value="#{proesController.selected.proesfing}" title="#{bundle.EditProesTitle_proesfing}" required="true" requiredMessage="#{bundle.EditProesRequiredMessage_proesfing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditProesLabel_proesumod}" for="proesumod" />
+                        <p:inputText id="proesumod" value="#{proesController.selected.proesumod}" title="#{bundle.EditProesTitle_proesumod}" />
+
+                        <h:outputLabel value="#{bundle.EditProesLabel_proesfmod}" for="proesfmod" />
+                        <p:calendar id="proesfmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{proesController.selected.proesfmod}" title="#{bundle.EditProesTitle_proesfmod}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{proesController.save}" value="#{bundle.Save}" update="display,:ProesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ProesEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProesEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

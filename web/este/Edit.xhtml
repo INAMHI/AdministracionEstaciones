@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EsteEditDlg" widgetVar="EsteEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditEsteTitle}">
+
+            <h:form id="EsteEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{esteController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditEsteLabel_esteId}" for="esteId" />
+                        <h:outputText id="esteId" value="#{esteController.selected.esteId}" />
+
+                        <h:outputLabel value="#{bundle.EditEsteLabel_estenomb}" for="estenomb" />
+                        <p:inputText id="estenomb" value="#{esteController.selected.estenomb}" title="#{bundle.EditEsteTitle_estenomb}" required="true" requiredMessage="#{bundle.EditEsteRequiredMessage_estenomb}"/>
+
+                        <h:outputLabel value="#{bundle.EditEsteLabel_esteicon}" for="esteicon" />
+                        <p:inputText id="esteicon" value="#{esteController.selected.esteicon}" title="#{bundle.EditEsteTitle_esteicon}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{esteController.save}" value="#{bundle.Save}" update="display,:EsteListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,EsteEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EsteEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

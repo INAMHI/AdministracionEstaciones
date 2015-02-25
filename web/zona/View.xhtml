@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZonaViewDlg" widgetVar="ZonaViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewZonaTitle}">
+
+            <h:form id="ZonaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{zonaController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewZonaLabel_zonaId}"/>
+                        <h:outputText value="#{zonaController.selected.zonaId}" title="#{bundle.ViewZonaTitle_zonaId}"/>
+
+                        <h:outputText value="#{bundle.ViewZonaLabel_zonanomb}"/>
+                        <h:outputText value="#{zonaController.selected.zonanomb}" title="#{bundle.ViewZonaTitle_zonanomb}"/>
+
+                        <h:outputText value="#{bundle.ViewZonaLabel_zonaobse}"/>
+                        <h:outputText value="#{zonaController.selected.zonaobse}" title="#{bundle.ViewZonaTitle_zonaobse}"/>
+
+                        <h:outputText value="#{bundle.ViewZonaLabel_zonauing}"/>
+                        <h:outputText value="#{zonaController.selected.zonauing}" title="#{bundle.ViewZonaTitle_zonauing}"/>
+
+                        <h:outputText value="#{bundle.ViewZonaLabel_zonafing}"/>
+                        <h:outputText value="#{zonaController.selected.zonafing}" title="#{bundle.ViewZonaTitle_zonafing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewZonaLabel_zonaumod}"/>
+                        <h:outputText value="#{zonaController.selected.zonaumod}" title="#{bundle.ViewZonaTitle_zonaumod}"/>
+
+                        <h:outputText value="#{bundle.ViewZonaLabel_zonafmod}"/>
+                        <h:outputText value="#{zonaController.selected.zonafmod}" title="#{bundle.ViewZonaTitle_zonafmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewZonaLabel_provCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ZonaViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

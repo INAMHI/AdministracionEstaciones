@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CpestaEditDlg" widgetVar="CpestaEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditCpestaTitle}">
+
+            <h:form id="CpestaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{cpestaController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditCpestaLabel_cpestaId}" for="cpestaId" />
+                        <h:outputText id="cpestaId" value="#{cpestaController.selected.cpestaId}" />
+
+                        <h:outputLabel value="#{bundle.EditCpestaLabel_estaId}" for="estaId" />
+                        <p:selectOneMenu id="estaId" value="#{cpestaController.selected.estaId}" disabled="true"  >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estaController.items}"
+                                           var="estaIdItem"
+                                           itemValue="#{estaIdItem}"
+                                           itemLabel="#{estaIdItem.estacodi} - #{estaIdItem.estanomb}"
+                                           />
+                            <f:converter binding="#{estaConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.EditCpestaLabel_copaId}" for="copaId" />
+                        <p:selectOneMenu id="copaId" value="#{cpestaController.selected.copaId}" required="true" requiredMessage="#{bundle.EditCpestaRequiredMessage_copaId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{copaController.items}"
+                                           var="copaIdItem"
+                                           itemValue="#{copaIdItem}"
+                                           itemLabel="#{copaIdItem.parmId.parmdesc} - #{copaIdItem.umepId.umepsimb} - #{copaIdItem.estdId.estddesc} - #{copaIdItem.inutId.inteId.intetiemp} #{copaIdItem.inutId.umetId.umetnomb} "
+                                           />
+                            <f:converter binding="#{copaConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.EditCpestaLabel_cpestadesc}" for="cpestadesc" />
+                        <p:inputText id="cpestadesc" value="#{cpestaController.selected.cpestadesc}" title="#{bundle.EditCpestaTitle_cpestadesc}" />
+                        
+                        <h:outputLabel value="Estado" for="cpestaesta" />
+                        <p:selectBooleanCheckbox id="cpestaesta" value="#{cpestaController.selected.cpestaesta}" />
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cpestaController.save}" value="#{bundle.Save}" update="display,:CpestaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CpestaEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CpestaEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

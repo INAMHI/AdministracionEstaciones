@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InesEditDlg" widgetVar="InesEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditInesTitle}">
+
+            <h:form id="InesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{inesController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditInesLabel_inesId}" for="inesId" />
+                        <h:outputText id="inesId" value="#{inesController.selected.inesId}" />
+
+                        <h:outputLabel value="#{bundle.EditInesLabel_inesnomb}" for="inesnomb" />
+                        <p:inputText id="inesnomb" value="#{inesController.selected.inesnomb}" title="#{bundle.EditInesTitle_inesnomb}" required="true" requiredMessage="#{bundle.EditInesRequiredMessage_inesnomb}"/>
+
+                        <h:outputLabel value="#{bundle.EditInesLabel_inesdesc}" for="inesdesc" />
+                        <p:inputText id="inesdesc" value="#{inesController.selected.inesdesc}" title="#{bundle.EditInesTitle_inesdesc}" />
+
+                        <h:outputLabel value="#{bundle.EditInesLabel_inesuing}" for="inesuing" />
+                        <p:inputText id="inesuing" value="#{inesController.selected.inesuing}" title="#{bundle.EditInesTitle_inesuing}" required="true" requiredMessage="#{bundle.EditInesRequiredMessage_inesuing}"/>
+
+                        <h:outputLabel value="#{bundle.EditInesLabel_inesfing}" for="inesfing" />
+                        <p:calendar id="inesfing" pattern="MM/dd/yyyy HH:mm:ss" value="#{inesController.selected.inesfing}" title="#{bundle.EditInesTitle_inesfing}" required="true" requiredMessage="#{bundle.EditInesRequiredMessage_inesfing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditInesLabel_inesumod}" for="inesumod" />
+                        <p:inputText id="inesumod" value="#{inesController.selected.inesumod}" title="#{bundle.EditInesTitle_inesumod}" required="true" requiredMessage="#{bundle.EditInesRequiredMessage_inesumod}"/>
+
+                        <h:outputLabel value="#{bundle.EditInesLabel_inesfmod}" for="inesfmod" />
+                        <p:calendar id="inesfmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{inesController.selected.inesfmod}" title="#{bundle.EditInesTitle_inesfmod}" required="true" requiredMessage="#{bundle.EditInesRequiredMessage_inesfmod}" showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{inesController.save}" value="#{bundle.Save}" update="display,:InesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,InesEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="InesEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

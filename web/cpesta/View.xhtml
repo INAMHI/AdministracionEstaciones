@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CpestaViewDlg" widgetVar="CpestaViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewCpestaTitle}">
+
+            <h:form id="CpestaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cpestaController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewCpestaLabel_cpestaId}"/>
+                        <h:outputText value="#{cpestaController.selected.cpestaId}" title="#{bundle.ViewCpestaTitle_cpestaId}"/>
+
+                        <h:outputText value="#{bundle.ViewCpestaLabel_cpestadesc}"/>
+                        <h:outputText value="#{cpestaController.selected.cpestadesc}" title="#{bundle.ViewCpestaTitle_cpestadesc}"/>
+
+                        <h:outputText value="#{bundle.ViewCpestaLabel_cpestauing}"/>
+                        <h:outputText value="#{cpestaController.selected.cpestauing}" title="#{bundle.ViewCpestaTitle_cpestauing}"/>
+
+                        <h:outputText value="#{bundle.ViewCpestaLabel_cpestafing}"/>
+                        <h:outputText value="#{cpestaController.selected.cpestafing}" title="#{bundle.ViewCpestaTitle_cpestafing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewCpestaLabel_cpestaumod}"/>
+                        <h:outputText value="#{cpestaController.selected.cpestaumod}" title="#{bundle.ViewCpestaTitle_cpestaumod}"/>
+
+                        <h:outputText value="#{bundle.ViewCpestaLabel_cpestafmod}"/>
+                        <h:outputText value="#{cpestaController.selected.cpestafmod}" title="#{bundle.ViewCpestaTitle_cpestafmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewCpestaLabel_estaId}"/>
+                        <h:outputText value="#{cpestaController.selected.estaId.estaId}"/>
+
+                        <h:outputText value="#{bundle.ViewCpestaLabel_copaId}"/>
+                        <h:outputText value="#{cpestaController.selected.copaId.copaId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CpestaViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

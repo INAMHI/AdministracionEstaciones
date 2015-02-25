@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipaCreateDlg" widgetVar="TipaCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateTipaTitle}">
+
+            <h:form id="TipaCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipaController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.CreateTipaLabel_tipacodi}" for="tipacodi" />
+                        <p:inputText id="tipacodi" value="#{tipaController.selected.tipacodi}" title="#{bundle.CreateTipaTitle_tipacodi}" />
+
+                        <h:outputLabel value="#{bundle.CreateTipaLabel_tipanomb}" for="tipanomb" />
+                        <p:inputText id="tipanomb" value="#{tipaController.selected.tipanomb}" title="#{bundle.CreateTipaTitle_tipanomb}" />
+
+                        <h:outputLabel value="#{bundle.CreateTipaLabel_tipaobse}" for="tipaobse" />
+                        <p:inputText id="tipaobse" value="#{tipaController.selected.tipaobse}" title="#{bundle.CreateTipaTitle_tipaobse}" />
+
+                        <h:outputLabel value="#{bundle.CreateTipaLabel_tipauing}" for="tipauing" />
+                        <p:inputText id="tipauing" value="#{tipaController.selected.tipauing}" title="#{bundle.CreateTipaTitle_tipauing}" required="true" requiredMessage="#{bundle.CreateTipaRequiredMessage_tipauing}"/>
+
+                        <h:outputLabel value="#{bundle.CreateTipaLabel_tipafing}" for="tipafing" />
+                        <p:calendar id="tipafing" pattern="MM/dd/yyyy HH:mm:ss" value="#{tipaController.selected.tipafing}" title="#{bundle.EditTipaTitle_tipafing}" required="true" requiredMessage="#{bundle.EditTipaRequiredMessage_tipafing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.CreateTipaLabel_tipaumod}" for="tipaumod" />
+                        <p:inputText id="tipaumod" value="#{tipaController.selected.tipaumod}" title="#{bundle.CreateTipaTitle_tipaumod}" />
+
+                        <h:outputLabel value="#{bundle.CreateTipaLabel_tipafmod}" for="tipafmod" />
+                        <p:calendar id="tipafmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{tipaController.selected.tipafmod}" title="#{bundle.EditTipaTitle_tipafmod}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tipaController.saveNew}" value="#{bundle.Save}" update="display,:TipaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,TipaCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TipaCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="Umbgraf1hViewDlg" widgetVar="Umbgraf1hViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewUmbgraf1hTitle}">
+
+            <h:form id="Umbgraf1hViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{umbgraf1hController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewUmbgraf1hLabel_umbgraf1hId}"/>
+                        <h:outputText value="#{umbgraf1hController.selected.umbgraf1hId}" title="#{bundle.ViewUmbgraf1hTitle_umbgraf1hId}"/>
+
+                        <h:outputText value="#{bundle.ViewUmbgraf1hLabel_tiparmax}"/>
+                        <h:outputText value="#{umbgraf1hController.selected.tiparmax}" title="#{bundle.ViewUmbgraf1hTitle_tiparmax}"/>
+
+                        <h:outputText value="#{bundle.ViewUmbgraf1hLabel_tiparmin}"/>
+                        <h:outputText value="#{umbgraf1hController.selected.tiparmin}" title="#{bundle.ViewUmbgraf1hTitle_tiparmin}"/>
+
+                        <h:outputText value="#{bundle.ViewUmbgraf1hLabel_tiparavi}"/>
+                        <h:outputText value="#{umbgraf1hController.selected.tiparavi}" title="#{bundle.ViewUmbgraf1hTitle_tiparavi}"/>
+
+                        <h:outputText value="#{bundle.ViewUmbgraf1hLabel_tiparalt}"/>
+                        <h:outputText value="#{umbgraf1hController.selected.tiparalt}" title="#{bundle.ViewUmbgraf1hTitle_tiparalt}"/>
+
+                        <h:outputText value="#{bundle.ViewUmbgraf1hLabel_umbgraf1hesta}"/>
+                        <h:outputText value="#{umbgraf1hController.selected.umbgraf1hesta}" title="#{bundle.ViewUmbgraf1hTitle_umbgraf1hesta}"/>
+
+                        <h:outputText value="#{bundle.ViewUmbgraf1hLabel_estaId}"/>
+                        <h:outputText value="#{umbgraf1hController.selected.estaId.estaId}"/>
+
+                        <h:outputText value="#{bundle.ViewUmbgraf1hLabel_parmId}"/>
+                        <h:outputText value="#{umbgraf1hController.selected.parmId.parmId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="Umbgraf1hViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CateViewDlg" widgetVar="CateViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewCateTitle}">
+
+            <h:form id="CateViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cateController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewCateLabel_cateId}"/>
+                        <h:outputText value="#{cateController.selected.cateId}" title="#{bundle.ViewCateTitle_cateId}"/>
+
+                        <h:outputText value="#{bundle.ViewCateLabel_catenomb}"/>
+                        <h:outputText value="#{cateController.selected.catenomb}" title="#{bundle.ViewCateTitle_catenomb}"/>
+
+                        <h:outputText value="#{bundle.ViewCateLabel_catedesc}"/>
+                        <h:outputText value="#{cateController.selected.catedesc}" title="#{bundle.ViewCateTitle_catedesc}"/>
+
+                        <h:outputText value="#{bundle.ViewCateLabel_cateuing}"/>
+                        <h:outputText value="#{cateController.selected.cateuing}" title="#{bundle.ViewCateTitle_cateuing}"/>
+
+                        <h:outputText value="#{bundle.ViewCateLabel_catefing}"/>
+                        <h:outputText value="#{cateController.selected.catefing}" title="#{bundle.ViewCateTitle_catefing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewCateLabel_cateumod}"/>
+                        <h:outputText value="#{cateController.selected.cateumod}" title="#{bundle.ViewCateTitle_cateumod}"/>
+
+                        <h:outputText value="#{bundle.ViewCateLabel_catefmod}"/>
+                        <h:outputText value="#{cateController.selected.catefmod}" title="#{bundle.ViewCateTitle_catefmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewCateLabel_tipoCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CateViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

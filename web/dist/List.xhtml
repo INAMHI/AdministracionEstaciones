@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="DistListForm">
+
+        <p:panel header="#{bundle.ListDistTitle}">
+
+            <p:dataTable id="datalist" value="#{distController.items}" var="item"
+                         selectionMode="single" selection="#{distController.selected}"
+                         rowKey="#{item.distId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.distId}" filterBy="#{item.distId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListDistTitle_distId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.distId}"/>
+                </p:column>
+                <p:column sortBy="#{item.distcant}" filterBy="#{item.distcant}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListDistTitle_distcant}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.distcant}"/>
+                </p:column>
+                <p:column sortBy="#{item.distobse}" filterBy="#{item.distobse}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListDistTitle_distobse}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.distobse}"/>
+                </p:column>
+                <p:column sortBy="#{item.distuing}" filterBy="#{item.distuing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListDistTitle_distuing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.distuing}"/>
+                </p:column>
+                <p:column sortBy="#{item.distfing}" filterBy="#{item.distfing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListDistTitle_distfing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.distfing}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.distumod}" filterBy="#{item.distumod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListDistTitle_distumod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.distumod}"/>
+                </p:column>
+                <p:column sortBy="#{item.distfmod}" filterBy="#{item.distfmod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListDistTitle_distfmod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.distfmod}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{distController.prepareCreate}" update=":DistCreateForm" oncomplete="DistCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":DistViewForm" oncomplete="DistViewDialog.show()" disabled="#{empty distController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DistEditForm" oncomplete="DistEditDialog.show()" disabled="#{empty distController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{distController.delete}" update=":growl,datalist" disabled="#{empty distController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

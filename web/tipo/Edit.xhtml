@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoEditDlg" widgetVar="TipoEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditTipoTitle}">
+
+            <h:form id="TipoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{tipoController.selected != null}">
+                        <h:outputLabel value="#{bundle.EditTipoLabel_tipoId}" for="tipoId" />
+                        <h:outputText id="tipoId" value="#{tipoController.selected.tipoId}" />
+
+                        <h:outputLabel value="#{bundle.EditTipoLabel_cateId}" for="cateId" />
+                        <p:selectOneMenu id="cateId" value="#{tipoController.selected.cateId}" required="true" requiredMessage="#{bundle.EditTipoRequiredMessage_cateId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{cateController.items}"
+                                           var="cateIdItem"
+                                           itemValue="#{cateIdItem}"
+                                           itemLabel="#{cateIdItem.catenomb}"
+                                           />
+                            <f:converter binding="#{cateConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.EditTipoLabel_tiponomb}" for="tiponomb" />
+                        <p:inputText id="tiponomb" value="#{tipoController.selected.tiponomb}" title="#{bundle.EditTipoTitle_tiponomb}" required="true" requiredMessage="#{bundle.EditTipoRequiredMessage_tiponomb}"/>
+
+                        <h:outputLabel value="#{bundle.EditTipoLabel_tipocodi}" for="tipocodi" />
+                        <p:inputText id="tipocodi" value="#{tipoController.selected.tipocodi}" title="#{bundle.EditTipoTitle_tipocodi}" />
+
+                        <h:outputLabel value="#{bundle.EditTipoLabel_tipoobse}" for="tipoobse" />
+                        <p:inputText id="tipoobse" value="#{tipoController.selected.tipoobse}" title="#{bundle.EditTipoTitle_tipoobse}" />
+
+                        <h:outputLabel value="#{bundle.EditTipoLabel_tipoesta}" for="tipoesta" />
+                        <p:selectBooleanCheckbox id="tipoesta" value="#{tipoController.selected.tipoesta}" required="true" requiredMessage="#{bundle.EditTipoRequiredMessage_tipoesta}"/>
+
+                        <h:outputLabel value="#{bundle.EditTipoLabel_tipouing}" for="tipouing" />
+                        <p:inputText id="tipouing" value="#{tipoController.selected.tipouing}" title="#{bundle.EditTipoTitle_tipouing}" required="true" requiredMessage="#{bundle.EditTipoRequiredMessage_tipouing}"/>
+
+                        <h:outputLabel value="#{bundle.EditTipoLabel_tipofing}" for="tipofing" />
+                        <p:calendar id="tipofing" pattern="MM/dd/yyyy HH:mm:ss" value="#{tipoController.selected.tipofing}" title="#{bundle.EditTipoTitle_tipofing}" required="true" requiredMessage="#{bundle.EditTipoRequiredMessage_tipofing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditTipoLabel_tipoumod}" for="tipoumod" />
+                        <p:inputText id="tipoumod" value="#{tipoController.selected.tipoumod}" title="#{bundle.EditTipoTitle_tipoumod}" />
+
+                        <h:outputLabel value="#{bundle.EditTipoLabel_tipofmod}" for="tipofmod" />
+                        <p:calendar id="tipofmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{tipoController.selected.tipofmod}" title="#{bundle.EditTipoTitle_tipofmod}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tipoController.save}" value="#{bundle.Save}" update="display,:TipoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,TipoEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TipoEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

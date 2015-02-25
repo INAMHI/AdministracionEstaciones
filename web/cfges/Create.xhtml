@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CfgesCreateDlg" widgetVar="CfgesCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateCfgesTitle}">
+
+            <h:form id="CfgesCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cfgesController.inputCfges != null}">
+                        <h:outputLabel value="#{bundle.CreateCfgesLabel_estaId}" for="estaId" />
+                        <p:selectOneMenu id="estaId" value="#{cfgesController.inputCfges.estaId}" required="true" requiredMessage="#{bundle.EditCfgesRequiredMessage_estaId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estaController.estaciones}" 
+                                           var="estaIdItem"
+                                           itemValue="#{estaIdItem}"
+                                           itemLabel="#{estaIdItem.puobId.puobcodi}- #{estaIdItem.puobId.puobnomb} / #{estaIdItem.catiId.captoId.captonomb} - #{estaIdItem.catiId.tipoId.cateId.catenomb} - #{estaIdItem.catiId.tipoId.tiponomb} "
+                                           />
+                            <f:converter binding="#{estaConverter}"/>
+                            <p:ajax event = "change"   listener="#{cfgesController.selectListener}" update="pickList"  />
+                        </p:selectOneMenu>
+
+
+                        <h:outputLabel value="#{bundle.CreateCfgesLabel_cfgesfinm}" for="cfgesfinm" />
+                        <p:calendar id="cfgesfinm" pattern="MM/dd/yyyy HH:mm:ss" value="#{cfgesController.inputCfges.cfgesfinm}" title="#{bundle.EditCfgesTitle_cfgesfinm}" required="true" requiredMessage="#{bundle.EditCfgesRequiredMessage_cfgesfinm}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.CreateCfgesLabel_cfgesffnm}" for="cfgesffnm" />
+                        <p:calendar id="cfgesffnm" pattern="MM/dd/yyyy HH:mm:ss" value="#{cfgesController.inputCfges.cfgesffnm}" title="#{bundle.EditCfgesTitle_cfgesffnm}" required="true" requiredMessage="#{bundle.EditCfgesRequiredMessage_cfgesffnm}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.CreateCfgesLabel_cfgesdesc}" for="cfgesdesc" />
+                        <p:inputText id="cfgesdesc" value="#{cfgesController.inputCfges.cfgesdesc}" title="#{bundle.CreateCfgesTitle_cfgesdesc}" />
+
+
+                        <h:outputLabel value="#{bundle.CreateCfgesLabel_dtlgId}" for="dtlgId" />
+                        <h:panelGrid columns="2">                           
+                            <p:inputText id="cfgesordd" value="#{cfgesController.inputCfges.cfgesordd}" title="#{bundle.CreateCfgesTitle_cfgesordd}" required="true" />
+                            <p:selectOneMenu id="dtlgId" value="#{cfgesController.inputCfges.dtlgId}" required="true" requiredMessage="#{bundle.EditCfgesRequiredMessage_dtlgId}">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{dtlgController.items}"
+                                               var="dtlgIdItem"
+                                               itemValue="#{dtlgIdItem}"
+                                               itemLabel="#{dtlgIdItem.inhmId.inhmnomb} - #{dtlgIdItem.inhmId.marcId.marcnomb} - #{dtlgIdItem.inhmId.inhmmode} - #{dtlgIdItem.inhmId.inhmseri}"
+                                               />
+                                <f:converter binding="#{dtlgConverter}"/>
+                            </p:selectOneMenu>
+                        </h:panelGrid>
+                    </p:panelGrid>
+                    <p:pickList id="pickList" value="#{sensController.sensores}" var="sensIdItem" itemLabel="#{sensIdItem.inhmId.inhmnomb} - #{sensIdItem.inhmId.marcId.marcnomb} - #{sensIdItem.inhmId.inhmmode} - #{sensIdItem.inhmId.inhmseri}" itemValue="#{sensIdItem}" showTargetControls="true" >
+                        <f:converter binding="#{sensConverter}"/>
+                    </p:pickList>
+                    <p:commandButton actionListener="#{cfgesController.guardarCfges()}" value="#{bundle.Save}" update="display,:CfgesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CfgesCreateDialog);"/>
+                    <p:commandButton immediate="true" value="#{bundle.Cancel}" oncomplete="CfgesCreateDialog.hide()" />
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+</html>

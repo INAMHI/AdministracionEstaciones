@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CatiEditDlg" widgetVar="CatiEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditCatiTitle}">
+
+            <h:form id="CatiEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{catiController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditCatiLabel_catiId}" for="catiId" />
+                        <h:outputText id="catiId" value="#{catiController.selected.catiId}" />
+
+                        <h:outputLabel value="#{bundle.EditCatiLabel_tipoId}" for="tipoId" />
+                        <p:selectOneMenu id="tipoId" value="#{catiController.selected.tipoId}" required="true" requiredMessage="#{bundle.EditCatiRequiredMessage_tipoId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoController.items}"
+                                           var="tipoIdItem"
+                                           itemValue="#{tipoIdItem}"
+                                           itemLabel="#{tipoIdItem.tiponomb} - #{tipoIdItem.cateId.catenomb} "
+                                           />
+                            <f:converter binding="#{tipoConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.EditCatiLabel_captoId}" for="captoId" />
+                        <p:selectOneMenu id="captoId" value="#{catiController.selected.captoId}" required="true" requiredMessage="#{bundle.EditCatiRequiredMessage_captoId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{captoController.items}"
+                                           var="captoIdItem"
+                                           itemValue="#{captoIdItem}"
+                                           itemLabel="#{captoIdItem.captonomb}"
+                                           />
+                            <f:converter binding="#{captoConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{catiController.save}" value="#{bundle.Save}" update="display,:CatiListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CatiEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CatiEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

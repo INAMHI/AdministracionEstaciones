@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CaptoViewDlg" widgetVar="CaptoViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewCaptoTitle}">
+
+            <h:form id="CaptoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{captoController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewCaptoLabel_captoId}"/>
+                        <h:outputText value="#{captoController.selected.captoId}" title="#{bundle.ViewCaptoTitle_captoId}"/>
+
+                        <h:outputText value="#{bundle.ViewCaptoLabel_captonomb}"/>
+                        <h:outputText value="#{captoController.selected.captonomb}" title="#{bundle.ViewCaptoTitle_captonomb}"/>
+
+                        <h:outputText value="#{bundle.ViewCaptoLabel_captodesc}"/>
+                        <h:outputText value="#{captoController.selected.captodesc}" title="#{bundle.ViewCaptoTitle_captodesc}"/>
+
+                        <h:outputText value="#{bundle.ViewCaptoLabel_catiCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CaptoViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

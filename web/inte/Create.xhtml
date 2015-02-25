@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InteCreateDlg" widgetVar="InteCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateInteTitle}">
+
+            <h:form id="InteCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{inteController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.CreateInteLabel_intetiemp}" for="intetiemp" />
+                        <p:inputText id="intetiemp" value="#{inteController.selected.intetiemp}" title="#{bundle.CreateInteTitle_intetiemp}" required="true" requiredMessage="#{bundle.CreateInteRequiredMessage_intetiemp}"/>
+
+                        <h:outputLabel value="#{bundle.CreateInteLabel_inteuing}" for="inteuing" />
+                        <p:inputText id="inteuing" value="#{inteController.selected.inteuing}" title="#{bundle.CreateInteTitle_inteuing}" required="true" requiredMessage="#{bundle.CreateInteRequiredMessage_inteuing}"/>
+
+                        <h:outputLabel value="#{bundle.CreateInteLabel_intefing}" for="intefing" />
+                        <p:calendar id="intefing" pattern="MM/dd/yyyy HH:mm:ss" value="#{inteController.selected.intefing}" title="#{bundle.EditInteTitle_intefing}" required="true" requiredMessage="#{bundle.EditInteRequiredMessage_intefing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.CreateInteLabel_inteumod}" for="inteumod" />
+                        <p:inputText id="inteumod" value="#{inteController.selected.inteumod}" title="#{bundle.CreateInteTitle_inteumod}" />
+
+                        <h:outputLabel value="#{bundle.CreateInteLabel_intefmod}" for="intefmod" />
+                        <p:calendar id="intefmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{inteController.selected.intefmod}" title="#{bundle.EditInteTitle_intefmod}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{inteController.saveNew}" value="#{bundle.Save}" update="display,:InteListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,InteCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="InteCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LiinViewDlg" widgetVar="LiinViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewLiinTitle}">
+
+            <h:form id="LiinViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{liinController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewLiinLabel_liinId}"/>
+                        <h:outputText value="#{liinController.selected.liinId}" title="#{bundle.ViewLiinTitle_liinId}"/>
+
+                        <h:outputText value="#{bundle.ViewLiinLabel_liinnomb}"/>
+                        <h:outputText value="#{liinController.selected.liinnomb}" title="#{bundle.ViewLiinTitle_liinnomb}"/>
+
+                        <h:outputText value="#{bundle.ViewLiinLabel_liindesc}"/>
+                        <h:outputText value="#{liinController.selected.liindesc}" title="#{bundle.ViewLiinTitle_liindesc}"/>
+
+                        <h:outputText value="#{bundle.ViewLiinLabel_liinuing}"/>
+                        <h:outputText value="#{liinController.selected.liinuing}" title="#{bundle.ViewLiinTitle_liinuing}"/>
+
+                        <h:outputText value="#{bundle.ViewLiinLabel_liinfing}"/>
+                        <h:outputText value="#{liinController.selected.liinfing}" title="#{bundle.ViewLiinTitle_liinfing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewLiinLabel_liinumod}"/>
+                        <h:outputText value="#{liinController.selected.liinumod}" title="#{bundle.ViewLiinTitle_liinumod}"/>
+
+                        <h:outputText value="#{bundle.ViewLiinLabel_liinfmod}"/>
+                        <h:outputText value="#{liinController.selected.liinfmod}" title="#{bundle.ViewLiinTitle_liinfmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewLiinLabel_inhmCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="LiinViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

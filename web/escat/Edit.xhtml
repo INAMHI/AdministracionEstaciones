@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EscatEditDlg" widgetVar="EscatEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditEscatTitle}">
+
+            <h:form id="EscatEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{estaController.selected != null}">
+                        <p:panelGrid columns="2" >
+                            <h:outputLabel value="#{bundle.EditEscatLabel_escatId}" for="escatId" />
+                            <h:outputText id="escatId" value="#{estaController.selected.estaId}" />
+
+                            <h:outputLabel value="#{bundle.EditEscatLabel_estaId}" for="estaId" />
+                            <p:selectOneMenu id="estaId" value="#{estaController.selected.puobId}" required="true" requiredMessage="#{bundle.EditEscatRequiredMessage_estaId}">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{puobController.items}"
+                                               var="puobIdItem"
+                                               itemValue="#{puobIdItem}"
+                                               itemLabel="#{puobIdItem.puobcodi} - #{puobIdItem.puobnomb}"
+                                               />
+                                <f:converter binding="#{puobConverter}"/>
+                            </p:selectOneMenu>
+
+
+                            <h:outputLabel value="#{bundle.EditEscatLabel_catiId}" for="catiId" />                 
+                            <p:selectOneMenu id="catiId" value="#{estaController.selected.catiId}" required="true" requiredMessage="#{bundle.EditEscatRequiredMessage_catiId}">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{catiController.items}"
+                                               var="catiIdItem"
+                                               itemValue="#{catiIdItem}"
+                                               itemLabel="#{catiIdItem.captoId.captonomb} - #{catiIdItem.tipoId.cateId.catenomb} - #{catiIdItem.tipoId.tiponomb}"
+                                               />
+                                <f:converter binding="#{catiConverter}"/>
+                                <p:ajax event="change" listener="#{estaController.selectListener1()}" update=":EscatEditForm:parametros"></p:ajax>
+                            </p:selectOneMenu>
+
+
+                            <h:outputLabel value="#{bundle.CreateEstaLabel_proesId}" for="proesId" />
+                            <p:selectOneMenu id="proesId" value="#{estaController.selected.proesId}" required="true" requiredMessage="#{bundle.EditEstaRequiredMessage_proesId}">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{proesController.items}"
+                                               var="proesIdItem"
+                                               itemValue="#{proesIdItem}"
+                                               itemLabel="#{proesIdItem.proesnomb}"
+                                               />
+                                <f:converter binding="#{proesConverter}"/>
+                            </p:selectOneMenu>
+
+                            <h:outputLabel value="#{bundle.CreateEstaLabel_esteId}" for="esteId" />
+                            <p:selectOneMenu id="esteId" value="#{estaController.selected.esteId}" required="true" requiredMessage="#{bundle.EditEstaRequiredMessage_esteId}">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{esteController.items}"
+                                               var="esteIdItem"
+                                               itemValue="#{esteIdItem}"
+                                               itemLabel="#{esteIdItem.estenomb}"
+                                               />
+                                <f:converter binding="#{esteConverter}"/>
+                            </p:selectOneMenu>
+
+                            <h:outputLabel value="#{bundle.CreateEstaLabel_estafein}" for="estafein" />
+                            <p:calendar id="estafein" pattern="MM/dd/yyyy" value="#{estaController.selected.estafein}" title="#{bundle.EditEstaTitle_estafein}"  showOn="button"/>
+
+                            <h:outputLabel value="#{bundle.CreateEstaLabel_estafele}" for="estafele" />
+                            <p:calendar id="estafele" pattern="MM/dd/yyyy" value="#{estaController.selected.estafele}" title="#{bundle.EditEstaTitle_estafele}"  showOn="button"/>
+
+                            <h:outputLabel value="#{bundle.CreateEstaLabel_estaobse}" for="estaobse" />
+                            <p:inputText id="estaobse" value="#{estaController.selected.estaobse}" title="#{bundle.CreateEstaTitle_estaobse}" />
+
+                            <h:outputLabel value="#{bundle.CreateEstaLabel_estainfo}" for="estainfo" />
+                            <p:inputText id="estainfo" value="#{estaController.selected.estainfo}" title="#{bundle.CreateEstaTitle_estainfo}" />
+
+
+                            <h:outputLabel value="#{bundle.CreateEstaLabel_estavin}" for="estavin" />
+                            <p:selectBooleanCheckbox id="estavin" value="#{estaController.selected.estavin}"  />
+
+                            <h:outputLabel value="#{bundle.CreateEstaLabel_estavex}" for="estavex" />
+                            <p:selectBooleanCheckbox id="estavex" value="#{estaController.selected.estavex}"  />
+                        </p:panelGrid>
+
+                        <p:dataTable id="parametros" value="#{estaController.parametros}" var="item">
+                            <p:column sortBy="#{item.parmnomb}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListParmTitle_parmId}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.parmId}"/>
+                            </p:column>
+                            <p:column sortBy="#{item.parmnemo}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListParmTitle_parmnemo}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.parmnemo}"/>
+                            </p:column>
+                            <p:column sortBy="#{item.parmdesc}" >
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListParmTitle_parmdesc}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.parmdesc}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{estaController.save}" value="#{bundle.Save}" update="display,:EscatListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,EscatEditDialog);"/>
+                    <p:commandButton actionListener="#{estaController.cancelarEditarEsta()}" value="#{bundle.Cancel}" immediate="true" onclick="EscatEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EstdCreateDlg" widgetVar="EstdCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateEstdTitle}">
+
+            <h:form id="EstdCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{estdController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.CreateEstdLabel_estdId}" for="estdId" />
+                        <p:inputText id="estdId" value="#{estdController.selected.estdId}" title="#{bundle.CreateEstdTitle_estdId}" required="true" requiredMessage="#{bundle.CreateEstdRequiredMessage_estdId}"/>
+
+                        <h:outputLabel value="#{bundle.CreateEstdLabel_estdcomp}" for="estdcomp" />
+                        <p:inputText id="estdcomp" value="#{estdController.selected.estdcomp}" title="#{bundle.CreateEstdTitle_estdcomp}" required="true" requiredMessage="#{bundle.CreateEstdRequiredMessage_estdcomp}"/>
+
+                        <h:outputLabel value="#{bundle.CreateEstdLabel_estdsimb}" for="estdsimb" />
+                        <p:inputText id="estdsimb" value="#{estdController.selected.estdsimb}" title="#{bundle.CreateEstdTitle_estdsimb}" />
+
+                        <h:outputLabel value="#{bundle.CreateEstdLabel_estddesc}" for="estddesc" />
+                        <p:inputText id="estddesc" value="#{estdController.selected.estddesc}" title="#{bundle.CreateEstdTitle_estddesc}" required="true" requiredMessage="#{bundle.CreateEstdRequiredMessage_estddesc}"/>
+
+                        <h:outputLabel value="#{bundle.CreateEstdLabel_estduing}" for="estduing" />
+                        <p:inputText id="estduing" value="#{estdController.selected.estduing}" title="#{bundle.CreateEstdTitle_estduing}" required="true" requiredMessage="#{bundle.CreateEstdRequiredMessage_estduing}"/>
+
+                        <h:outputLabel value="#{bundle.CreateEstdLabel_estdfing}" for="estdfing" />
+                        <p:calendar id="estdfing" pattern="MM/dd/yyyy" value="#{estdController.selected.estdfing}" title="#{bundle.EditEstdTitle_estdfing}" required="true" requiredMessage="#{bundle.EditEstdRequiredMessage_estdfing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.CreateEstdLabel_estdumod}" for="estdumod" />
+                        <p:inputText id="estdumod" value="#{estdController.selected.estdumod}" title="#{bundle.CreateEstdTitle_estdumod}" />
+
+                        <h:outputLabel value="#{bundle.CreateEstdLabel_estdfmod}" for="estdfmod" />
+                        <p:calendar id="estdfmod" pattern="MM/dd/yyyy" value="#{estdController.selected.estdfmod}" title="#{bundle.EditEstdTitle_estdfmod}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{estdController.saveNew}" value="#{bundle.Save}" update="display,:EstdListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,EstdCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EstdCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

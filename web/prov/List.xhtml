@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="ProvListForm">
+
+        <p:panel header="#{bundle.ListProvTitle}">
+
+            <p:dataTable id="datalist" value="#{provController.items}" var="item"
+                         selectionMode="single" selection="#{provController.selected}"
+                         rowKey="#{item.provId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.provId}" filterBy="#{item.provId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProvTitle_provId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.provId}"/>
+                </p:column>
+                <p:column sortBy="#{item.provnomb}" filterBy="#{item.provnomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProvTitle_provnomb}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.provnomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.provesta}" filterBy="#{item.provesta}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProvTitle_provesta}"/>
+                    </f:facet>
+                    <h:selectBooleanCheckbox id="provesta" value="#{item.provesta}" title="#{bundle.EditProvTitle_provesta}" required="true" requiredMessage="#{bundle.EditProvRequiredMessage_provesta}" disabled="true"/>
+                </p:column>
+                <p:column sortBy="#{item.provuing}" filterBy="#{item.provuing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProvTitle_provuing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.provuing}"/>
+                </p:column>
+                <p:column sortBy="#{item.provfing}" filterBy="#{item.provfing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProvTitle_provfing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.provfing}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.provumod}" filterBy="#{item.provumod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProvTitle_provumod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.provumod}"/>
+                </p:column>
+                <p:column sortBy="#{item.provfmod}" filterBy="#{item.provfmod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProvTitle_provfmod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.provfmod}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.zonaId.zonaId}" filterBy="#{item.zonaId.zonaId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProvTitle_zonaId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.zonaId.zonaId}"/>
+                </p:column>
+                <p:column sortBy="#{item.regiId.regiId}" filterBy="#{item.regiId.regiId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListProvTitle_regiId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.regiId.regiId}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{provController.prepareCreate}" update=":ProvCreateForm" oncomplete="ProvCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ProvViewForm" oncomplete="ProvViewDialog.show()" disabled="#{empty provController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProvEditForm" oncomplete="ProvEditDialog.show()" disabled="#{empty provController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{provController.delete}" update=":growl,datalist" disabled="#{empty provController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

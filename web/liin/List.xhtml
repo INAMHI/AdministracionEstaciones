@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="LiinListForm">
+
+        <p:panel header="#{bundle.ListLiinTitle}">
+
+            <p:dataTable id="datalist" value="#{liinController.items}" var="item"
+                         selectionMode="single" selection="#{liinController.selected}"
+                         rowKey="#{item.liinId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.liinId}" filterBy="#{item.liinId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListLiinTitle_liinId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.liinId}"/>
+                </p:column>
+                <p:column sortBy="#{item.liinnomb}" filterBy="#{item.liinnomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListLiinTitle_liinnomb}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.liinnomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.liindesc}" filterBy="#{item.liindesc}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListLiinTitle_liindesc}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.liindesc}"/>
+                </p:column>
+                <p:column sortBy="#{item.liinuing}" filterBy="#{item.liinuing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListLiinTitle_liinuing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.liinuing}"/>
+                </p:column>
+                <p:column sortBy="#{item.liinfing}" filterBy="#{item.liinfing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListLiinTitle_liinfing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.liinfing}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.liinumod}" filterBy="#{item.liinumod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListLiinTitle_liinumod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.liinumod}"/>
+                </p:column>
+                <p:column sortBy="#{item.liinfmod}" filterBy="#{item.liinfmod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListLiinTitle_liinfmod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.liinfmod}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{liinController.prepareCreate}" update=":LiinCreateForm" oncomplete="LiinCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":LiinViewForm" oncomplete="LiinViewDialog.show()" disabled="#{empty liinController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":LiinEditForm" oncomplete="LiinEditDialog.show()" disabled="#{empty liinController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{liinController.delete}" update=":growl,datalist" disabled="#{empty liinController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

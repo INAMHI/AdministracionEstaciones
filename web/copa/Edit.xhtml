@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CopaEditDlg" widgetVar="CopaEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditCopaTitle}">
+
+            <h:form id="CopaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{copaController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditCopaLabel_copaId}" for="copaId" />
+                        <h:outputText id="copaId" value="#{copaController.selected.copaId}" />
+
+                        <h:outputLabel value="#{bundle.EditCopaLabel_copadesc}" for="copadesc" />
+                        <p:inputText id="copadesc" value="#{copaController.selected.copadesc}" title="#{bundle.EditCopaTitle_copadesc}" />
+
+                        <h:outputLabel value="#{bundle.EditCopaLabel_copanemo}" for="copanemo" />
+                        <p:inputText id="copanemo" value="#{copaController.selected.copanemo}" title="#{bundle.EditCopaTitle_copanemo}" required="true" requiredMessage="#{bundle.EditCopaRequiredMessage_copanemo}"/>
+
+                        <h:outputLabel value="#{bundle.EditCopaLabel_copauing}" for="copauing" />
+                        <p:inputText id="copauing" value="#{copaController.selected.copauing}" title="#{bundle.EditCopaTitle_copauing}" required="true" requiredMessage="#{bundle.EditCopaRequiredMessage_copauing}"/>
+
+                        <h:outputLabel value="#{bundle.EditCopaLabel_copafing}" for="copafing" />
+                        <p:calendar id="copafing" pattern="MM/dd/yyyy HH:mm:ss" value="#{copaController.selected.copafing}" title="#{bundle.EditCopaTitle_copafing}" required="true" requiredMessage="#{bundle.EditCopaRequiredMessage_copafing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditCopaLabel_copaumod}" for="copaumod" />
+                        <p:inputText id="copaumod" value="#{copaController.selected.copaumod}" title="#{bundle.EditCopaTitle_copaumod}" />
+
+                        <h:outputLabel value="#{bundle.EditCopaLabel_copafmod}" for="copafmod" />
+                        <p:calendar id="copafmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{copaController.selected.copafmod}" title="#{bundle.EditCopaTitle_copafmod}"  showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditCopaLabel_umepId}" for="umepId" />
+                        <p:selectOneMenu id="umepId" value="#{copaController.selected.umepId}" required="true" requiredMessage="#{bundle.EditCopaRequiredMessage_umepId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{umepController.items}"
+                                           var="umepIdItem"
+                                           itemValue="#{umepIdItem}"
+                                           itemLabel="#{umepIdItem.umepId.toString()}"
+                                           />
+                            <f:converter binding="#{umepConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.EditCopaLabel_parmId}" for="parmId" />
+                        <p:selectOneMenu id="parmId" value="#{copaController.selected.parmId}" required="true" requiredMessage="#{bundle.EditCopaRequiredMessage_parmId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{parmController.items}"
+                                           var="parmIdItem"
+                                           itemValue="#{parmIdItem}"
+                                           itemLabel="#{parmIdItem.parmId.toString()}"
+                                           />
+                            <f:converter binding="#{parmConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.EditCopaLabel_inutId}" for="inutId" />
+                        <p:selectOneMenu id="inutId" value="#{copaController.selected.inutId}" required="true" requiredMessage="#{bundle.EditCopaRequiredMessage_inutId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{inutController.items}"
+                                           var="inutIdItem"
+                                           itemValue="#{inutIdItem}"
+                                           itemLabel="#{inutIdItem.inutId.toString()}"
+                                           />
+                            <f:converter binding="#{inutConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.EditCopaLabel_estdId}" for="estdId" />
+                        <p:selectOneMenu id="estdId" value="#{copaController.selected.estdId}" required="true" requiredMessage="#{bundle.EditCopaRequiredMessage_estdId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estdController.items}"
+                                           var="estdIdItem"
+                                           itemValue="#{estdIdItem}"
+                                           itemLabel="#{estdIdItem.estdId.toString()}"
+                                           />
+                            <f:converter binding="#{estdConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{copaController.save}" value="#{bundle.Save}" update="display,:CopaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CopaEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CopaEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

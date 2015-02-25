@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipsViewDlg" widgetVar="TipsViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewTipsTitle}">
+
+            <h:form id="TipsViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipsController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewTipsLabel_tipsId}"/>
+                        <h:outputText value="#{tipsController.selected.tipsId}" title="#{bundle.ViewTipsTitle_tipsId}"/>
+
+                        <h:outputText value="#{bundle.ViewTipsLabel_tipscodi}"/>
+                        <h:outputText value="#{tipsController.selected.tipscodi}" title="#{bundle.ViewTipsTitle_tipscodi}"/>
+
+                        <h:outputText value="#{bundle.ViewTipsLabel_tipsnomb}"/>
+                        <h:outputText value="#{tipsController.selected.tipsnomb}" title="#{bundle.ViewTipsTitle_tipsnomb}"/>
+
+                        <h:outputText value="#{bundle.ViewTipsLabel_tipstota}"/>
+                        <h:outputText value="#{tipsController.selected.tipstota}" title="#{bundle.ViewTipsTitle_tipstota}"/>
+
+                        <h:outputText value="#{bundle.ViewTipsLabel_espedesc}"/>
+                        <h:outputText value="#{tipsController.selected.espedesc}" title="#{bundle.ViewTipsTitle_espedesc}"/>
+
+                        <h:outputText value="#{bundle.ViewTipsLabel_inhmCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TipsViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

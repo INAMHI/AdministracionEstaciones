@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EsteViewDlg" widgetVar="EsteViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewEsteTitle}">
+
+            <h:form id="EsteViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{esteController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewEsteLabel_esteId}"/>
+                        <h:outputText value="#{esteController.selected.esteId}" title="#{bundle.ViewEsteTitle_esteId}"/>
+
+                        <h:outputText value="#{bundle.ViewEsteLabel_estenomb}"/>
+                        <h:outputText value="#{esteController.selected.estenomb}" title="#{bundle.ViewEsteTitle_estenomb}"/>
+
+                        <h:outputText value="#{bundle.ViewEsteLabel_esteicon}"/>
+                        <h:outputText value="#{esteController.selected.esteicon}" title="#{bundle.ViewEsteTitle_esteicon}"/>
+
+                        <h:outputText value="#{bundle.ViewEsteLabel_estaCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EsteViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

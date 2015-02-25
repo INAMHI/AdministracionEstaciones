@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MacesCreateDlg" widgetVar="MacesCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateMacesTitle}">
+
+            <h:form id="MacesCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{macesController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.CreateMacesLabel_macesdesc}" for="macesdesc" />
+                        <p:inputText id="macesdesc" value="#{macesController.selected.macesdesc}" title="#{bundle.CreateMacesTitle_macesdesc}" required="true" requiredMessage="#{bundle.CreateMacesRequiredMessage_macesdesc}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{macesController.saveNew}" value="#{bundle.Save}" update="display,:MacesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MacesCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MacesCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

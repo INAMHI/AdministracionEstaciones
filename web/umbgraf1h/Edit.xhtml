@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="Umbgraf1hEditDlg" widgetVar="Umbgraf1hEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditUmbgraf1hTitle}">
+
+            <h:form id="Umbgraf1hEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{umbgraf1hController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditUmbgraf1hLabel_umbgraf1hId}" for="umbgraf1hId" />
+                        <h:outputText id="umbgraf1hId" value="#{umbgraf1hController.selected.umbgraf1hId}" />
+
+                        <h:outputLabel value="#{bundle.EditUmbgraf1hLabel_estaId}" for="estaId" />
+                        <p:selectOneMenu id="estaId" value="#{umbgraf1hController.selected.estaId}" disabled="true" required="true" requiredMessage="#{bundle.EditUmbgraf1hRequiredMessage_estaId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estaController.items}"
+                                           var="estaIdItem"
+                                           itemValue="#{estaIdItem}"
+                                           itemLabel="#{estaIdItem.estacodi} - #{estaIdItem.estanomb}"
+                                           />
+                            <f:converter binding="#{estaConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.EditUmbgraf1hLabel_parmId}" for="parmId" />
+                        <p:selectOneMenu id="parmId" value="#{umbgraf1hController.selected.parmId}" required="true" requiredMessage="#{bundle.EditUmbgraf1hRequiredMessage_parmId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{parmController.items}"
+                                           var="parmIdItem"
+                                           itemValue="#{parmIdItem}"
+                                           itemLabel="#{parmIdItem.parmdesc}"
+                                           />
+                            <f:converter binding="#{parmConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.EditUmbgraf1hLabel_tiparmax}" for="tiparmax" />
+                        <p:inputText id="tiparmax" value="#{umbgraf1hController.selected.tiparmax}" title="#{bundle.EditUmbgraf1hTitle_tiparmax}" />
+
+                        <h:outputLabel value="#{bundle.EditUmbgraf1hLabel_tiparmin}" for="tiparmin" />
+                        <p:inputText id="tiparmin" value="#{umbgraf1hController.selected.tiparmin}" title="#{bundle.EditUmbgraf1hTitle_tiparmin}" />
+
+                        <h:outputLabel value="#{bundle.EditUmbgraf1hLabel_tiparavi}" for="tiparavi" />
+                        <p:inputText id="tiparavi" value="#{umbgraf1hController.selected.tiparavi}" title="#{bundle.EditUmbgraf1hTitle_tiparavi}" />
+
+                        <h:outputLabel value="#{bundle.EditUmbgraf1hLabel_tiparalt}" for="tiparalt" />
+                        <p:inputText id="tiparalt" value="#{umbgraf1hController.selected.tiparalt}" title="#{bundle.EditUmbgraf1hTitle_tiparalt}" />
+
+                        <h:outputLabel value="#{bundle.EditUmbgraf1hLabel_umbgraf1hesta}" for="umbgraf1hesta" />
+                        <p:selectBooleanCheckbox id="umbgraf1hesta" value="#{umbgraf1hController.selected.umbgraf1hesta}" />
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{umbgraf1hController.save}" value="#{bundle.Save}" update="display,:Umbgraf1hListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,Umbgraf1hEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="Umbgraf1hEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

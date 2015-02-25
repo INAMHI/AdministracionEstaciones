@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RegiEditDlg" widgetVar="RegiEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditRegiTitle}">
+
+            <h:form id="RegiEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{regiController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditRegiLabel_regiId}" for="regiId" />
+                        <h:outputText id="regiId" value="#{regiController.selected.regiId}" />
+
+                        <h:outputLabel value="#{bundle.EditRegiLabel_reginomb}" for="reginomb" />
+                        <p:inputText id="reginomb" value="#{regiController.selected.reginomb}" title="#{bundle.EditRegiTitle_reginomb}" required="true" requiredMessage="#{bundle.EditRegiRequiredMessage_reginomb}"/>
+
+                        <h:outputLabel value="#{bundle.EditRegiLabel_regiesta}" for="regiesta" />
+                        <p:selectBooleanCheckbox id="regiesta" value="#{regiController.selected.regiesta}" required="true" requiredMessage="#{bundle.EditRegiRequiredMessage_regiesta}"/>
+
+                        <h:outputLabel value="#{bundle.EditRegiLabel_regiuing}" for="regiuing" />
+                        <p:inputText id="regiuing" value="#{regiController.selected.regiuing}" title="#{bundle.EditRegiTitle_regiuing}" required="true" requiredMessage="#{bundle.EditRegiRequiredMessage_regiuing}"/>
+
+                        <h:outputLabel value="#{bundle.EditRegiLabel_regifing}" for="regifing" />
+                        <p:calendar id="regifing" pattern="MM/dd/yyyy HH:mm:ss" value="#{regiController.selected.regifing}" title="#{bundle.EditRegiTitle_regifing}" required="true" requiredMessage="#{bundle.EditRegiRequiredMessage_regifing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditRegiLabel_regiumod}" for="regiumod" />
+                        <p:inputText id="regiumod" value="#{regiController.selected.regiumod}" title="#{bundle.EditRegiTitle_regiumod}" />
+
+                        <h:outputLabel value="#{bundle.EditRegiLabel_regifmod}" for="regifmod" />
+                        <p:calendar id="regifmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{regiController.selected.regifmod}" title="#{bundle.EditRegiTitle_regifmod}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{regiController.save}" value="#{bundle.Save}" update="display,:RegiListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,RegiEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RegiEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

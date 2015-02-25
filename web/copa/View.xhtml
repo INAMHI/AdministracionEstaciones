@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CopaViewDlg" widgetVar="CopaViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewCopaTitle}">
+
+            <h:form id="CopaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{copaController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewCopaLabel_copaId}"/>
+                        <h:outputText value="#{copaController.selected.copaId}" title="#{bundle.ViewCopaTitle_copaId}"/>
+
+                        <h:outputText value="#{bundle.ViewCopaLabel_copadesc}"/>
+                        <h:outputText value="#{copaController.selected.copadesc}" title="#{bundle.ViewCopaTitle_copadesc}"/>
+
+                        <h:outputText value="#{bundle.ViewCopaLabel_copanemo}"/>
+                        <h:outputText value="#{copaController.selected.copanemo}" title="#{bundle.ViewCopaTitle_copanemo}"/>
+
+                        <h:outputText value="#{bundle.ViewCopaLabel_copauing}"/>
+                        <h:outputText value="#{copaController.selected.copauing}" title="#{bundle.ViewCopaTitle_copauing}"/>
+
+                        <h:outputText value="#{bundle.ViewCopaLabel_copafing}"/>
+                        <h:outputText value="#{copaController.selected.copafing}" title="#{bundle.ViewCopaTitle_copafing}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewCopaLabel_copaumod}"/>
+                        <h:outputText value="#{copaController.selected.copaumod}" title="#{bundle.ViewCopaTitle_copaumod}"/>
+
+                        <h:outputText value="#{bundle.ViewCopaLabel_copafmod}"/>
+                        <h:outputText value="#{copaController.selected.copafmod}" title="#{bundle.ViewCopaTitle_copafmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewCopaLabel_umepId}"/>
+                        <h:outputText value="#{copaController.selected.umepId.umepId}"/>
+
+                        <h:outputText value="#{bundle.ViewCopaLabel_parmId}"/>
+                        <h:outputText value="#{copaController.selected.parmId.parmId}"/>
+
+                        <h:outputText value="#{bundle.ViewCopaLabel_inutId}"/>
+                        <h:outputText value="#{copaController.selected.inutId.inutId}"/>
+
+                        <h:outputText value="#{bundle.ViewCopaLabel_estdId}"/>
+                        <h:outputText value="#{copaController.selected.estdId.estdId}"/>
+
+                        <h:outputText value="#{bundle.ViewCopaLabel_cpestaCollection}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CopaViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

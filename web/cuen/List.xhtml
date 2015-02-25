@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="CuenListForm">
+
+        <p:panel header="#{bundle.ListCuenTitle}">
+
+            <p:dataTable id="datalist" value="#{cuenController.items}" var="item"
+                         selectionMode="single" selection="#{cuenController.selected}"
+                         rowKey="#{item.cuenId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.cuencodi}" filterBy="#{item.cuencodi}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCuenTitle_cuencodi}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cuencodi}"/>
+                </p:column>
+                <p:column sortBy="#{item.cuennomb}" filterBy="#{item.cuennomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCuenTitle_cuennomb}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cuennomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.cuenesta}" filterBy="#{item.cuenesta}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCuenTitle_cuenesta}"/>
+                    </f:facet>
+                    <h:selectBooleanCheckbox id="cuenesta" value="#{item.cuenesta}" title="#{bundle.EditCuenTitle_cuenesta}" required="true" requiredMessage="#{bundle.EditCuenRequiredMessage_cuenesta}" disabled="true"/>
+                </p:column>
+                <p:column sortBy="#{item.cuenId}" filterBy="#{item.cuenId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCuenTitle_cuenId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cuenId}"/>
+                </p:column>
+                <p:column sortBy="#{item.cuennive}" filterBy="#{item.cuennive}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCuenTitle_cuennive}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cuennive}"/>
+                </p:column>
+                <p:column sortBy="#{item.cuenuing}" filterBy="#{item.cuenuing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCuenTitle_cuenuing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cuenuing}"/>
+                </p:column>
+                <p:column sortBy="#{item.cuenfing}" filterBy="#{item.cuenfing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCuenTitle_cuenfing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cuenfing}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.cuenumod}" filterBy="#{item.cuenumod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCuenTitle_cuenumod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cuenumod}"/>
+                </p:column>
+                <p:column sortBy="#{item.cuenfmod}" filterBy="#{item.cuenfmod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCuenTitle_cuenfmod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cuenfmod}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{cuenController.prepareCreate}" update=":CuenCreateForm" oncomplete="CuenCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CuenViewForm" oncomplete="CuenViewDialog.show()" disabled="#{empty cuenController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CuenEditForm" oncomplete="CuenEditDialog.show()" disabled="#{empty cuenController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{cuenController.delete}" update=":growl,datalist" disabled="#{empty cuenController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="EsteListForm">
+
+        <p:panel header="#{bundle.ListEsteTitle}">
+
+            <p:dataTable id="datalist" value="#{esteController.items}" var="item"
+                         selectionMode="single" selection="#{esteController.selected}"
+                         rowKey="#{item.esteId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.esteId}" filterBy="#{item.esteId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEsteTitle_esteId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.esteId}"/>
+                </p:column>
+                <p:column sortBy="#{item.estenomb}" filterBy="#{item.estenomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEsteTitle_estenomb}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estenomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.esteicon}" filterBy="#{item.esteicon}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEsteTitle_esteicon}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.esteicon}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{esteController.prepareCreate}" update=":EsteCreateForm" oncomplete="EsteCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":EsteViewForm" oncomplete="EsteViewDialog.show()" disabled="#{empty esteController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":EsteEditForm" oncomplete="EsteEditDialog.show()" disabled="#{empty esteController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{esteController.delete}" update=":growl,datalist" disabled="#{empty esteController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UmbEditDlg" widgetVar="UmbEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditUmbTitle}">
+
+            <h:form id="UmbEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{umbController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditUmbLabel_umbId}" for="umbId" />
+                        <h:outputText id="umbId" value="#{umbController.selected.umbId}" />
+
+                        <h:outputLabel value="#{bundle.EditUmbLabel_umbmax}" for="umbmax" />
+                        <p:inputText id="umbmax" value="#{umbController.selected.umbmax}" title="#{bundle.EditUmbTitle_umbmax}" />
+
+                        <h:outputLabel value="#{bundle.EditUmbLabel_umbmin}" for="umbmin" />
+                        <p:inputText id="umbmin" value="#{umbController.selected.umbmin}" title="#{bundle.EditUmbTitle_umbmin}" />
+
+                        <h:outputLabel value="#{bundle.EditUmbLabel_umbuing}" for="umbuing" />
+                        <p:inputText id="umbuing" value="#{umbController.selected.umbuing}" title="#{bundle.EditUmbTitle_umbuing}" required="true" requiredMessage="#{bundle.EditUmbRequiredMessage_umbuing}"/>
+
+                        <h:outputLabel value="#{bundle.EditUmbLabel_umbfing}" for="umbfing" />
+                        <p:calendar id="umbfing" pattern="MM/dd/yyyy HH:mm:ss" value="#{umbController.selected.umbfing}" title="#{bundle.EditUmbTitle_umbfing}" required="true" requiredMessage="#{bundle.EditUmbRequiredMessage_umbfing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditUmbLabel_umbmod}" for="umbmod" />
+                        <p:inputText id="umbmod" value="#{umbController.selected.umbmod}" title="#{bundle.EditUmbTitle_umbmod}" />
+
+                        <h:outputLabel value="#{bundle.EditUmbLabel_umbfmod}" for="umbfmod" />
+                        <p:calendar id="umbfmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{umbController.selected.umbfmod}" title="#{bundle.EditUmbTitle_umbfmod}"  showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditUmbLabel_tipaId}" for="tipaId" />
+                        <p:selectOneMenu id="tipaId" value="#{umbController.selected.tipaId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipaController.items}"
+                                           var="tipaIdItem"
+                                           itemValue="#{tipaIdItem}"
+                                           itemLabel="#{tipaIdItem.tipaId.toString()}"
+                                           />
+                            <f:converter binding="#{tipaConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.EditUmbLabel_estaId}" for="estaId" />
+                        <p:selectOneMenu id="estaId" value="#{umbController.selected.estaId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estaController.items}"
+                                           var="estaIdItem"
+                                           itemValue="#{estaIdItem}"
+                                           itemLabel="#{estaIdItem.estaId.toString()}"
+                                           />
+                            <f:converter binding="#{estaConverter}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.EditUmbLabel_copaId}" for="copaId" />
+                        <p:selectOneMenu id="copaId" value="#{umbController.selected.copaId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{copaController.items}"
+                                           var="copaIdItem"
+                                           itemValue="#{copaIdItem}"
+                                           itemLabel="#{copaIdItem.copaId.toString()}"
+                                           />
+                            <f:converter binding="#{copaConverter}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{umbController.save}" value="#{bundle.Save}" update="display,:UmbListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UmbEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UmbEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

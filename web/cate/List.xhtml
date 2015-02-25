@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="CateListForm">
+
+        <p:panel header="#{bundle.ListCateTitle}">
+
+            <p:dataTable id="datalist" value="#{cateController.items}" var="item"
+                         selectionMode="single" selection="#{cateController.selected}"
+                         rowKey="#{item.cateId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.cateId}" filterBy="#{item.cateId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCateTitle_cateId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cateId}"/>
+                </p:column>
+                <p:column sortBy="#{item.catenomb}" filterBy="#{item.catenomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCateTitle_catenomb}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.catenomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.catedesc}" filterBy="#{item.catedesc}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCateTitle_catedesc}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.catedesc}"/>
+                </p:column>
+                <p:column sortBy="#{item.cateuing}" filterBy="#{item.cateuing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCateTitle_cateuing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cateuing}"/>
+                </p:column>
+                <p:column sortBy="#{item.catefing}" filterBy="#{item.catefing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCateTitle_catefing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.catefing}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.cateumod}" filterBy="#{item.cateumod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCateTitle_cateumod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cateumod}"/>
+                </p:column>
+                <p:column sortBy="#{item.catefmod}" filterBy="#{item.catefmod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListCateTitle_catefmod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.catefmod}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{cateController.prepareCreate}" update=":CateCreateForm" oncomplete="CateCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CateViewForm" oncomplete="CateViewDialog.show()" disabled="#{empty cateController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CateEditForm" oncomplete="CateEditDialog.show()" disabled="#{empty cateController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{cateController.delete}" update=":growl,datalist" disabled="#{empty cateController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

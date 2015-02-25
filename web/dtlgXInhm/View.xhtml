@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DtlgXInhmViewDlg" widgetVar="DtlgXInhmViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewDtlgXInhmTitle}">
+
+            <h:form id="DtlgXInhmViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{dtlgXInhmController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewDtlgXInhmLabel_dtlgId}"/>
+                        <h:outputText value="#{dtlgXInhmController.selected.dtlgId}" title="#{bundle.ViewDtlgXInhmTitle_dtlgId}"/>
+
+                        <h:outputText value="#{bundle.ViewDtlgXInhmLabel_inhmId}"/>
+                        <h:outputText value="#{dtlgXInhmController.selected.inhmId}" title="#{bundle.ViewDtlgXInhmTitle_inhmId}"/>
+
+                        <h:outputText value="#{bundle.ViewDtlgXInhmLabel_mdtlId}"/>
+                        <h:outputText value="#{dtlgXInhmController.selected.mdtlId}" title="#{bundle.ViewDtlgXInhmTitle_mdtlId}"/>
+
+                        <h:outputText value="#{bundle.ViewDtlgXInhmLabel_liinId}"/>
+                        <h:outputText value="#{dtlgXInhmController.selected.liinId}" title="#{bundle.ViewDtlgXInhmTitle_liinId}"/>
+
+                        <h:outputText value="#{bundle.ViewDtlgXInhmLabel_marcId}"/>
+                        <h:outputText value="#{dtlgXInhmController.selected.marcId}" title="#{bundle.ViewDtlgXInhmTitle_marcId}"/>
+
+                        <h:outputText value="#{bundle.ViewDtlgXInhmLabel_tipsId}"/>
+                        <h:outputText value="#{dtlgXInhmController.selected.tipsId}" title="#{bundle.ViewDtlgXInhmTitle_tipsId}"/>
+
+                        <h:outputText value="#{bundle.ViewDtlgXInhmLabel_inesId}"/>
+                        <h:outputText value="#{dtlgXInhmController.selected.inesId}" title="#{bundle.ViewDtlgXInhmTitle_inesId}"/>
+
+                        <h:outputText value="#{bundle.ViewDtlgXInhmLabel_inhmnomb}"/>
+                        <h:outputText value="#{dtlgXInhmController.selected.inhmnomb}" title="#{bundle.ViewDtlgXInhmTitle_inhmnomb}"/>
+
+                        <h:outputText value="#{bundle.ViewDtlgXInhmLabel_inhmmode}"/>
+                        <h:outputText value="#{dtlgXInhmController.selected.inhmmode}" title="#{bundle.ViewDtlgXInhmTitle_inhmmode}"/>
+
+                        <h:outputText value="#{bundle.ViewDtlgXInhmLabel_inhmseri}"/>
+                        <h:outputText value="#{dtlgXInhmController.selected.inhmseri}" title="#{bundle.ViewDtlgXInhmTitle_inhmseri}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DtlgXInhmViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

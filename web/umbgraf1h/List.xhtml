@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="Umbgraf1hListForm">
+
+        <p:panel header="#{bundle.ListUmbgraf1hTitle}">
+
+            <p:dataTable id="datalist" value="#{umbgraf1hController.items}" var="item"
+                         selectionMode="single" selection="#{umbgraf1hController.selected}"
+                         rowKey="#{item.umbgraf1hId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.umbgraf1hId}" filterBy="#{item.umbgraf1hId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListUmbgraf1hTitle_umbgraf1hId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.umbgraf1hId}"/>
+                </p:column>
+                <p:column sortBy="#{item.estaId.estanomb}" filterBy="#{item.estaId.estanomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListUmbgraf1hTitle_estaId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estaId.estacodi} - #{item.estaId.estanomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.parmId.parmdesc}" filterBy="#{item.parmId.parmdesc}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListUmbgraf1hTitle_parmId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.parmId.parmdesc}"/>
+                </p:column>
+                <p:column sortBy="#{item.tiparmax}" filterBy="#{item.tiparmax}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListUmbgraf1hTitle_tiparmax}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tiparmax}"/>
+                </p:column>
+                <p:column sortBy="#{item.tiparmin}" filterBy="#{item.tiparmin}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListUmbgraf1hTitle_tiparmin}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tiparmin}"/>
+                </p:column>
+                <p:column sortBy="#{item.tiparavi}" filterBy="#{item.tiparavi}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListUmbgraf1hTitle_tiparavi}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tiparavi}"/>
+                </p:column>
+                <p:column sortBy="#{item.tiparalt}" filterBy="#{item.tiparalt}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListUmbgraf1hTitle_tiparalt}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tiparalt}"/>
+                </p:column>
+                <p:column sortBy="#{item.umbgraf1hesta}" filterBy="#{item.umbgraf1hesta}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListUmbgraf1hTitle_umbgraf1hesta}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.umbgraf1hesta}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{umbgraf1hController.prepareCreate}" update=":Umbgraf1hCreateForm" oncomplete="Umbgraf1hCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":Umbgraf1hViewForm" oncomplete="Umbgraf1hViewDialog.show()" disabled="#{empty umbgraf1hController.selected}"/>
+                    <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":Umbgraf1hEditForm" oncomplete="Umbgraf1hEditDialog.show()" disabled="#{empty umbgraf1hController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{umbgraf1hController.delete}" update=":growl,datalist" disabled="#{empty umbgraf1hController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EstaEditDlg" widgetVar="EstaEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditEstaTitle}">
+
+            <h:form id="EstaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{estaController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_estaId}" for="estaId" />
+                        <h:outputText id="estaId" value="#{estaController.selected.estaId}" />
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_estacodi}" for="estacodi" />
+                        <p:inputText id="estacodi" value="#{estaController.selected.estacodi}" title="#{bundle.EditEstaTitle_estacodi}" required="true" requiredMessage="#{bundle.EditEstaRequiredMessage_estacodi}"/>
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_estanomb}" for="estanomb" />
+                        <p:inputText id="estanomb" value="#{estaController.selected.estanomb}" title="#{bundle.EditEstaTitle_estanomb}" required="true" requiredMessage="#{bundle.EditEstaRequiredMessage_estanomb}"/>
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_estadire}" for="estadire" />
+                        <p:inputText id="estadire" value="#{estaController.selected.estadire}" title="#{bundle.EditEstaTitle_estadire}" />
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_estaarea}" for="estaarea" />
+                        <p:inputText id="estaarea" value="#{estaController.selected.estaarea}" title="#{bundle.EditEstaTitle_estaarea}" />
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_estaobse}" for="estaobse" />
+                        <p:inputText id="estaobse" value="#{estaController.selected.estaobse}" title="#{bundle.EditEstaTitle_estaobse}" />
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_estaesta}" for="estaesta" />
+                        <p:selectBooleanCheckbox id="estaesta" value="#{estaController.selected.estaesta}" required="true" requiredMessage="#{bundle.EditEstaRequiredMessage_estaesta}"/>
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_estauing}" for="estauing" />
+                        <p:inputText id="estauing" value="#{estaController.selected.estauing}" title="#{bundle.EditEstaTitle_estauing}" required="true" requiredMessage="#{bundle.EditEstaRequiredMessage_estauing}"/>
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_estafing}" for="estafing" />
+                        <p:calendar id="estafing" pattern="MM/dd/yyyy HH:mm:ss" value="#{estaController.selected.estafing}" title="#{bundle.EditEstaTitle_estafing}" required="true" requiredMessage="#{bundle.EditEstaRequiredMessage_estafing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_estaumod}" for="estaumod" />
+                        <p:inputText id="estaumod" value="#{estaController.selected.estaumod}" title="#{bundle.EditEstaTitle_estaumod}" />
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_estafmod}" for="estafmod" />
+                        <p:calendar id="estafmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{estaController.selected.estafmod}" title="#{bundle.EditEstaTitle_estafmod}"  showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_cuenId}" for="cuenId" />
+                        <p:inputText id="cuenId" value="#{estaController.selected.cuenId}" title="#{bundle.EditEstaTitle_cuenId}" required="true" requiredMessage="#{bundle.EditEstaRequiredMessage_cuenId}"/>
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_parrId}" for="parrId" />
+                        <p:inputText id="parrId" value="#{estaController.selected.parrId}" title="#{bundle.EditEstaTitle_parrId}" required="true" requiredMessage="#{bundle.EditEstaRequiredMessage_parrId}"/>
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_accesId}" for="accesId" />
+                        <p:inputText id="accesId" value="#{estaController.selected.accesId}" title="#{bundle.EditEstaTitle_accesId}" required="true" requiredMessage="#{bundle.EditEstaRequiredMessage_accesId}"/>
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_macesId}" for="macesId" />
+                        <p:inputText id="macesId" value="#{estaController.selected.macesId}" title="#{bundle.EditEstaTitle_macesId}" required="true" requiredMessage="#{bundle.EditEstaRequiredMessage_macesId}"/>
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_esteId}" for="esteId" />
+                        <p:inputText id="esteId" value="#{estaController.selected.esteId}" title="#{bundle.EditEstaTitle_esteId}" required="true" requiredMessage="#{bundle.EditEstaRequiredMessage_esteId}"/>
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_proesId}" for="proesId" />
+                        <p:inputText id="proesId" value="#{estaController.selected.proesId}" title="#{bundle.EditEstaTitle_proesId}" />
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_estaimgn}" for="estaimgn" />
+                        <p:inputTextarea rows="4" cols="30" id="estaimgn" value="#{estaController.selected.estaimgn}" title="#{bundle.EditEstaTitle_estaimgn}" />
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_estaimgs}" for="estaimgs" />
+                        <p:inputTextarea rows="4" cols="30" id="estaimgs" value="#{estaController.selected.estaimgs}" title="#{bundle.EditEstaTitle_estaimgs}" />
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_estaimge}" for="estaimge" />
+                        <p:inputTextarea rows="4" cols="30" id="estaimge" value="#{estaController.selected.estaimge}" title="#{bundle.EditEstaTitle_estaimge}" />
+
+                        <h:outputLabel value="#{bundle.EditEstaLabel_estaimgo}" for="estaimgo" />
+                        <p:inputTextarea rows="4" cols="30" id="estaimgo" value="#{estaController.selected.estaimgo}" title="#{bundle.EditEstaTitle_estaimgo}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{estaController.save}" value="#{bundle.Save}" update="display,:EstaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,EstaEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EstaEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

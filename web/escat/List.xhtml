@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="EscatListForm">
+
+        <p:panel header="#{bundle.ListEscatTitle}">
+
+            <p:dataTable id="datalist" value="#{estaController.items}" var="item"
+                         selectionMode="single" selection="#{estaController.selected}"
+                         rowKey="#{item.estaId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"  update="createButton viewButton editButton deleteButton :EscatEditForm:parametros"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.estaId}" filterBy="#{item.estaId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_estaId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estaId}"/>
+                </p:column>
+                <p:column sortBy="#{item.puobId.puobnomb}" filterBy="#{item.puobId.puobnomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEscatTitle_estaId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.puobId.puobcodi} - #{item.puobId.puobnomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.catiId.captoId.captonomb}" filterBy="#{item.catiId.captoId.captonomb} - #{item.catiId.tipoId.cateId.catenomb} - #{item.catiId.tipoId.tiponomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEscatTitle_catiId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.catiId.captoId.captonomb} - #{item.catiId.tipoId.cateId.catenomb} - #{item.catiId.tipoId.tiponomb}"/>
+                </p:column>
+                <p:column sortBy="#{item.proesId.proesnomb}" filterBy="#{item.proesId.proesnomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_proesId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.proesId.proesId}"/>
+                </p:column>
+                <p:column sortBy="#{item.esteId.estenomb}" filterBy="#{item.esteId.estenomb}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_esteId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.esteId.esteId}"/>
+                </p:column>
+                <p:column sortBy="#{item.estafein}" filterBy="#{item.estafein}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_estafein}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estafein}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.estafele}" filterBy="#{item.estafele}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_estafele}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estafele}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.estaobse}" filterBy="#{item.estaobse}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_estaobse}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estaobse}"/>
+                </p:column>
+                <p:column sortBy="#{item.estainfo}" filterBy="#{item.estainfo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_estainfo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estainfo}"/>
+                </p:column>
+                <p:column sortBy="#{item.estadtlg}" filterBy="#{item.estadtlg}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_estadtlg}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estadtlg}"/>
+                </p:column>
+                <p:column sortBy="#{item.estaimgn}" filterBy="#{item.estaimgn}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_estaimgn}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estaimgn}"/>
+                </p:column>
+                <p:column sortBy="#{item.estaimgs}" filterBy="#{item.estaimgs}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_estaimgs}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estaimgs}"/>
+                </p:column>
+                <p:column sortBy="#{item.estaimge}" filterBy="#{item.estaimge}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_estaimge}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estaimge}"/>
+                </p:column>
+                <p:column sortBy="#{item.estaimgo}" filterBy="#{item.estaimgo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_estaimgo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estaimgo}"/>
+                </p:column>
+                <p:column sortBy="#{item.estavin}" filterBy="#{item.estavin}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_estavin}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estavin}"/>
+                </p:column>
+                <p:column sortBy="#{item.estavex}" filterBy="#{item.estavex}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_estavex}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estavex}"/>
+                </p:column>
+                <p:column sortBy="#{item.estauing}" filterBy="#{item.estauing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_estauing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estauing}"/>
+                </p:column>
+                <p:column sortBy="#{item.estafing}" filterBy="#{item.estafing}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_estafing}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estafing}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.estaumod}" filterBy="#{item.estaumod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_estaumod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estaumod}"/>
+                </p:column>
+                <p:column sortBy="#{item.estafmod}" filterBy="#{item.estafmod}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListEstaTitle_estafmod}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estafmod}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{estaController.prepareCreate}" update=":EscatCreateForm" oncomplete="EscatCreateDialog.show()"/>
+                    <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":EscatViewForm" oncomplete="EscatViewDialog.show()" disabled="#{empty estaController.selected}"/>
+                    <p:commandButton id="editButton" actionListener="#{estaController.selectListener1()}"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":EscatEditForm" oncomplete="EscatEditDialog.show()" disabled="#{empty estaController.selected}"/>
+                    <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{estaController.delete}" update=":growl,datalist" disabled="#{empty estaController.selected}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

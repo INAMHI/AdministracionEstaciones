@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZonaCreateDlg" widgetVar="ZonaCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateZonaTitle}">
+
+            <h:form id="ZonaCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{zonaController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.CreateZonaLabel_zonaId}" for="zonaId" />
+                        <p:inputText id="zonaId" value="#{zonaController.selected.zonaId}" title="#{bundle.CreateZonaTitle_zonaId}" required="true" requiredMessage="#{bundle.CreateZonaRequiredMessage_zonaId}"/>
+
+                        <h:outputLabel value="#{bundle.CreateZonaLabel_zonanomb}" for="zonanomb" />
+                        <p:inputText id="zonanomb" value="#{zonaController.selected.zonanomb}" title="#{bundle.CreateZonaTitle_zonanomb}" required="true" requiredMessage="#{bundle.CreateZonaRequiredMessage_zonanomb}"/>
+
+                        <h:outputLabel value="#{bundle.CreateZonaLabel_zonaobse}" for="zonaobse" />
+                        <p:inputText id="zonaobse" value="#{zonaController.selected.zonaobse}" title="#{bundle.CreateZonaTitle_zonaobse}" />
+
+                        <h:outputLabel value="#{bundle.CreateZonaLabel_zonauing}" for="zonauing" />
+                        <p:inputText id="zonauing" value="#{zonaController.selected.zonauing}" title="#{bundle.CreateZonaTitle_zonauing}" required="true" requiredMessage="#{bundle.CreateZonaRequiredMessage_zonauing}"/>
+
+                        <h:outputLabel value="#{bundle.CreateZonaLabel_zonafing}" for="zonafing" />
+                        <p:calendar id="zonafing" pattern="MM/dd/yyyy HH:mm:ss" value="#{zonaController.selected.zonafing}" title="#{bundle.EditZonaTitle_zonafing}" required="true" requiredMessage="#{bundle.EditZonaRequiredMessage_zonafing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.CreateZonaLabel_zonaumod}" for="zonaumod" />
+                        <p:inputText id="zonaumod" value="#{zonaController.selected.zonaumod}" title="#{bundle.CreateZonaTitle_zonaumod}" />
+
+                        <h:outputLabel value="#{bundle.CreateZonaLabel_zonafmod}" for="zonafmod" />
+                        <p:calendar id="zonafmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{zonaController.selected.zonafmod}" title="#{bundle.EditZonaTitle_zonafmod}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zonaController.saveNew}" value="#{bundle.Save}" update="display,:ZonaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ZonaCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ZonaCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

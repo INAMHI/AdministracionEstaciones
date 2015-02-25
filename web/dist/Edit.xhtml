@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DistEditDlg" widgetVar="DistEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditDistTitle}">
+
+            <h:form id="DistEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{distController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditDistLabel_distId}" for="distId" />
+                        <h:outputText id="distId" value="#{distController.selected.distId}" />
+
+                        <h:outputLabel value="#{bundle.EditDistLabel_distcant}" for="distcant" />
+                        <p:inputText id="distcant" value="#{distController.selected.distcant}" title="#{bundle.EditDistTitle_distcant}" required="true" requiredMessage="#{bundle.EditDistRequiredMessage_distcant}"/>
+
+                        <h:outputLabel value="#{bundle.EditDistLabel_distobse}" for="distobse" />
+                        <p:inputText id="distobse" value="#{distController.selected.distobse}" title="#{bundle.EditDistTitle_distobse}" />
+
+                        <h:outputLabel value="#{bundle.EditDistLabel_distuing}" for="distuing" />
+                        <p:inputText id="distuing" value="#{distController.selected.distuing}" title="#{bundle.EditDistTitle_distuing}" required="true" requiredMessage="#{bundle.EditDistRequiredMessage_distuing}"/>
+
+                        <h:outputLabel value="#{bundle.EditDistLabel_distfing}" for="distfing" />
+                        <p:calendar id="distfing" pattern="MM/dd/yyyy HH:mm:ss" value="#{distController.selected.distfing}" title="#{bundle.EditDistTitle_distfing}" required="true" requiredMessage="#{bundle.EditDistRequiredMessage_distfing}" showOn="button"/>
+
+                        <h:outputLabel value="#{bundle.EditDistLabel_distumod}" for="distumod" />
+                        <p:inputText id="distumod" value="#{distController.selected.distumod}" title="#{bundle.EditDistTitle_distumod}" />
+
+                        <h:outputLabel value="#{bundle.EditDistLabel_distfmod}" for="distfmod" />
+                        <p:calendar id="distfmod" pattern="MM/dd/yyyy HH:mm:ss" value="#{distController.selected.distfmod}" title="#{bundle.EditDistTitle_distfmod}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{distController.save}" value="#{bundle.Save}" update="display,:DistListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DistEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DistEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
